@@ -19,6 +19,9 @@ void __box_CTOR( Box *const this);
 double getWidth(const Box *const this);
 double getLength(const Box *const this);
 double getHeight(const Box *const this);
+double getVolume(const Box *const this);
+
+
 /*
 double getWidth() {
 

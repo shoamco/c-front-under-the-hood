@@ -1,6 +1,6 @@
 #include "testCFront.h"
 void print_box(Box *b){
-    printf("Length: %lf,Width: %lf, Height: %lf \n",getLength(b),getWidth(b),getHeight(b));
+    printf("Length: %lf,Width: %lf, Height: %lf getVolume: %lf \n",getLength(b),getWidth(b),getHeight(b),getVolume(b));
 }
 
 void test_ctor_box() {
