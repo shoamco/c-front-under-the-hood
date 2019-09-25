@@ -8,6 +8,8 @@ typedef enum {
     false = 0,
     true = 1
 } Bool;
+const char *const DEF_MSG;
+const char *message;
 typedef struct Box Box;
 /*typedef void (*Constructor)(Box *box, double l, double w, double h) ;*/
 struct Box {
@@ -17,19 +19,11 @@ struct Box {
 
 };
 
-void __box_CTOR_d_d_d(Box *const
 
-this,
-double l,
-double w,
-double h
-);
+void __box_CTOR_d_d_d( Box *const this, double l, double w, double h);
 
-void __box_CTOR_d(Box *const
 
-this,
-double dim
-);
+void __box_CTOR_d(Box *const this,double dim);
 
 void __box_CTOR(Box *const
 
@@ -57,29 +51,31 @@ double __getVolume_Box__p(const Box *const
 
 this);
 
-void __print_Box_p(const Box *const
-
-this);
+void __print_Box_p(const Box *const this);
 
 typedef struct Shelf Shelf;
 struct Shelf {
-    const char *const DEF_MSG;
-    const char *message;
+
     Box boxes[3];
 
 };
 void __Shelf_CTOR_default(Shelf *const shelf);
-void setBox(Shelf *const shelf, int index, const Box *const dims);
+void __setBox_p_i_p(Shelf *const shelf, int index, const Box *const dims);
 
 const Box* getBox(Shelf *const shelf,int index);
 
 /*const function*/
-double __getVolume_Shelf_p(const Shelf *const shelf);
+double __getVolume_Shelf_p(const Shelf *const this);
 
-void __print_Shelf_p(const Shelf *const shelf);
+
+void __print_Shelf_p(const Shelf *const this);
 
 void setBox(Shelf *const shelf,int index, const Box *dims);
-Box* __operator_Double_Equal_d (Box *const this,double mult);
+void __operator_Assignment_p_p (Box *const this,Box *const other);
+
+Box* __operator_Multiplication_Equal_p_d (Box *const this,double mult);
+/*Box* __operator_Multiplication_p_d (const Box* box, double mult);*/
+
 /*
 static int getNumBoxes();
 static void setMessage(const char* msg);

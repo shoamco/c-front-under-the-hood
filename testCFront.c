@@ -20,8 +20,24 @@ void test_box() {
 
 
     __print_Box_p(&box1);
-    printf("box1+=5\n");
-    __operator_Double_Equal_d(&box1, 5);
+    printf("\n\nbox1 += 5\n");
+    __operator_Multiplication_Equal_p_d(&box1, 5);
+
+
+    printf(" \n\n box1 = box3 * 2\n");
+    __print_Box_p(&box1);
+    __operator_Assignment_p_p(&box1, &box3);
+    __print_Box_p(&box1);
+
+    printf(" \n\nbefor box2 = box1 * 2\n");
+    __print_Box_p(&box1);
+
+    printf("after\n");
+
+
+    /*box2 = __operator_Multiplication_p_d(&box1, 2);*/
+    __print_Box_p(&box1);
+
 
     __print_Box_p(&box1);
 
