@@ -17,4 +17,9 @@ void test_ctor_box() {
     print_box(&box3);
 
 
+    __box_DTOR(&box1);
+    __box_DTOR(&box2);
+    __box_DTOR(&box3);
+
+
 }

@@ -1,6 +1,7 @@
 #ifndef __CPP2C_ENCAPSULATION_DEFS_H__
 #define __CPP2C_ENCAPSULATION_DEFS_H__
 
+#include <stdio.h>
 /*//// Box ////////////*/
 
 typedef struct Box Box;
@@ -13,8 +14,9 @@ typedef struct Box Box;
 } ;
 
 void __box_CTOR_d_d_d( Box *const this, double l, double w, double h);
-void __box_CTOR_d( Box *const this, double l);
+void __box_CTOR_d( Box *const this, double dim);
 void __box_CTOR( Box *const this);
+void __box_DTOR( Box *const this);
 
 double getWidth(const Box *const this);
 double getLength(const Box *const this);
