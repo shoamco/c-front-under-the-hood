@@ -2,7 +2,8 @@
 #include "cpp2c_encapsulation_defs.h"
 #include "testCFront.h"
 /*
- * gcc cpp2c_encapsulation.c cpp2c_encapsulation_defs.c cpp2c_encapsulation_defs.h -std=gnu90 -Wall -pedantic -Wconversion -Wconversion -ansi -o a
+ *
+ gcc cpp2c_encapsulation.c cpp2c_encapsulation_defs.c cpp2c_encapsulation_defs.h -std=gnu90 -Wall -pedantic -Wconversion -Wconversion -ansi -o a
 
  gcc testCFront.c testCFront.h cpp2c_encapsulation.c cpp2c_encapsulation_defs.c cpp2c_encapsulation_defs.h -std=gnu90 -Wall -pedantic -Wconversion -Wconversion -ansi -o a
 
@@ -80,7 +81,7 @@ void doShelves() {
 }
 
 int main() {
-    test_ctor_box();
+    test_box();
     /*   doBoxes();
 
        thisFunc();
