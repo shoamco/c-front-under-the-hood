@@ -2,7 +2,8 @@
 #define __CPP2C_ENCAPSULATION_DEFS_H__
 
 #include <stdio.h>
-
+/*static function in class,in c only global function-all file can call this function and not only one file(not static in c)*/
+int getNumBoxes();
 /*//// Box ////////////*/
 typedef enum {
     false = 0,
@@ -29,7 +30,7 @@ void __box_CTOR(Box *const
 
 this);
 
-void __box_DTOR(Box *const
+void    __box_DTOR(Box *const
 
 this);
 

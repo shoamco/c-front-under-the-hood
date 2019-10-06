@@ -43,7 +43,7 @@ struct Material_t: public Materials
 
 
 typedef struct  Material_t{
-    /*Materials-empty*/
+    /*inheritance Materials-empty*/
 
     /*struct Material_t*/
     Types material;
@@ -54,6 +54,18 @@ typedef struct  Material_t{
 
 
 /*/// PhysicalBox ////////////*/
+typedef struct PhysicalBox{
+    /*inheritance Box*/
+    Box box;
+/*PhysicalBox*/
+    Material_t material;
+
+}PhysicalBox;
+void __PhysicalBox_CTOR_d_d_d__(PhysicalBox *const this,double l, double w, double h);
+void __PhysicalBox_CTOR_d_d_d_t__(PhysicalBox *const this,double l, double w, double h, Types t);
+void __PhysicalBox_CTOR_t__(PhysicalBox *const this ,Types t);
+void __PhysicalBox_DTOR__(PhysicalBox *const this);
+void __printp_cpc__(const PhysicalBox *const this) ;
 /*
 class PhysicalBox: public Box
 {

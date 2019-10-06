@@ -6,55 +6,85 @@ void doMaterials() {
 
 
     Materials mat;
-    struct MatTest { Materials mat; Material_t mat_t; };
+    struct MatTest {
+        Materials mat;
+        Material_t mat_t;
+    };
     struct Material_t mat1;
     Material_t mat2;
     printf("\n--- Start doMaterials() ---\n\n");
-   /*size of empty struct in c =1*/
+    /*size of empty struct in c =1*/
     printf("Size of Materials: %lu\n", sizeof(Materials) + 1);
-      printf("Size of mat: %lu\n", sizeof(mat)+1);
-      printf("Size of Materials::Types: %lu\n", sizeof(Types));
-      printf("Size of Material_t: %lu\n", sizeof(Material_t));
+    printf("Size of mat: %lu\n", sizeof(mat) + 1);
+    printf("Size of Materials::Types: %lu\n", sizeof(Types));
+    printf("Size of Material_t: %lu\n", sizeof(Material_t));
 
 
-      /*Struct padding ->4*2*/
-    printf("Size of Materials + Material_t: %lu\n", sizeof(struct MatTest)*2);
+    /*Struct padding ->4*2*/
+    printf("Size of Materials + Material_t: %lu\n", sizeof(struct MatTest) * 2);
 
-    mat1.material=OTHER  ;
+    mat1.material = OTHER;
     printf("Material created, set to %s\n", "Other");
-    mat2.material=METAL;
+    mat2.material = METAL;
     /*   Material_t mat2(Materials::METAL);
      */
-    printf("Material created, set to %s\n","Metal");
+    printf("Material created, set to %s\n", "Metal");
 
 
     printf("\n--- End doMaterials() ---\n\n");
 }
-/*
-void doPhysicalBox()
-{
-   /* printf("\n--- Start doPhysicalBox() ---\n\n");
 
-    PhysicalBox pb1(8, 6, 4, Materials::PLASTIC);
-    PhysicalBox pb2(Materials::WOOD);
-    PhysicalBox pb3(7, 7, 7);
+void doPhysicalBox() {
+
+    PhysicalBox pb1;
+    PhysicalBox pb2;
+    PhysicalBox pb3;
+    PhysicalBox pb4;
+    printf("\n--- Start doPhysicalBox() ---\n\n");
+
+    /*  PhysicalBox pb1(8, 6, 4, Materials::PLASTIC);*/
+    __PhysicalBox_CTOR_d_d_d_t__(&pb1, 8, 6, 4, PLASTIC);
+    /* PhysicalBox pb2(Materials::WOOD);*/
+    __PhysicalBox_CTOR_t__(&pb2, WOOD);
+    /*   PhysicalBox pb3(7, 7, 7);*/
+    __PhysicalBox_CTOR_d_d_d__(&pb3, 7, 7, 7);
+
 
     printf("\npb4 is copy-constructed from pb1\n");
-    PhysicalBox pb4 = pb1;
-    pb4.printp();
-    pb1.printp();
-    printf("pb4 %s pb1\n", pb4 == pb1 ? "equals" : "does not equal");
+    /*   copy COTR inline    PhysicalBox pb4 = pb1;*/
+    __operator_Assignment_p_p(&(pb4.box), &(pb1.box));
+    pb4.material.material = pb1.material.material;
+
+
+    /*  pb4.printp();*/
+    __printp_cpc__(&pb4);
+    /*pb1.printp();*/
+    __printp_cpc__(&pb1);
+
+
+/*    printf("pb4 %s pb1\n", pb4 == pb1 ? "equals" : "does not equal");*/
+
+    printf("pb4 %s pb1\n",
+           pb4.box.height == pb1.box.width && pb4.box.height == pb1.box.height && pb4.box.length == pb1.box.length &&
+           pb4.material.material == pb1.material.material ? "equals" : "does not equal");
 
     printf("\npb4 is copy-assigned from pb3\n");
-    pb4 = pb3;
-    pb4.printp();
-    pb3.printp();
-    printf("pb4 %s pb3\n", pb4 == pb3 ? "equals" : "does not equal");
+    /* pb4 = pb3;*/
+    __operator_Assignment_p_p(&(pb4.box), &(pb3.box));
+    pb4.material.material = pb3.material.material;
+    /*   pb4.printp();*/
+    __printp_cpc__(&pb4);
+    /*   pb3.printp();*/
+    __printp_cpc__(&pb3);
+
+    printf("pb4 %s pb3\n",
+           pb4.box.height == pb3.box.width && pb4.box.height == pb3.box.height && pb4.box.length == pb3.box.length &&
+           pb4.material.material == pb3.material.material ? "equals" : "does not equal");
 
     printf("\n--- End doPhysicalBox() ---\n\n");
-    */
+
 }
-*/
+
 /*
 void doWeightBox()
 {
@@ -88,7 +118,7 @@ int main() {
 
     doMaterials();
 
-     doPhysicalBox();
+    doPhysicalBox();
 
     /*  doWeightBox();
   */
