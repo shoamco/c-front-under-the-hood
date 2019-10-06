@@ -82,8 +82,7 @@ private:
     Material_t material;
 };
 
-bool operator==(const PhysicalBox&, const PhysicalBox&);
-bool operator!=(const PhysicalBox&, const PhysicalBox&);
+
 
 //// PhysicalBox Defs ////////////
 
@@ -101,10 +100,9 @@ inline bool operator!=(const PhysicalBox& lhs, const PhysicalBox& rhs)
 {
     return !(lhs == rhs);
 }
-
-//// WeightBox ////////////
-
-class WeightBox: public Box
+*/
+/*/// WeightBox ////////////*/
+/*class WeightBox: public Box
 {
 public:
     WeightBox(double l, double w, double h, double wgt = 0.0);
@@ -119,7 +117,21 @@ public:
 private:
     double weight;
 };
+*/
+typedef struct WeightBox{
+    /*inheritance Box*/
+    Box box;
+    /*WeightBox*/
+    double weight;
+}WeightBox;
+void __WeightBox_CTOR_d_d_d_d__(WeightBox *this,double l, double w, double h, double wgt);
+void __WeightBox_CTOR_d_d_d__(WeightBox *this,double l, double w, double h);
+void __WeightBox_COPY_CTOR__(WeightBox *this,WeightBox *other);
+void __WeightBox_DTOR__(WeightBox *this);
+WeightBox __WeightBox__operator_Assignment_p_p (WeightBox *const this,WeightBox *const other);
+void __WeightBox_printw__(const WeightBox *const this);
 
+/*
 bool operator==(const WeightBox&, const WeightBox&);
 bool operator!=(const WeightBox&, const WeightBox&);
 

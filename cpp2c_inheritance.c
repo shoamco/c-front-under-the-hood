@@ -82,35 +82,78 @@ void doPhysicalBox() {
            pb4.material.material == pb3.material.material ? "equals" : "does not equal");
 
     printf("\n--- End doPhysicalBox() ---\n\n");
+    /*DTOR*/
+    __box_DTOR(&pb1);
+    __PhysicalBox_DTOR__(&pb1);
+
+    __box_DTOR(&pb2);
+    __PhysicalBox_DTOR__(&pb2);
+
+    __box_DTOR(&pb3);
+    __PhysicalBox_DTOR__(&pb3);
+
+    __box_DTOR(&pb4);
+    __PhysicalBox_DTOR__(&pb4);
 
 }
 
-/*
-void doWeightBox()
-{
-    printf("\n--- Start doWeightBox() ---\n\n");
 
-    WeightBox pw1(8, 6, 4, 25);
-    WeightBox pw2(1, 2, 3);
-    WeightBox pw3(10, 20, 30, 15);
+void doWeightBox() {
+    WeightBox pw1;
+    WeightBox pw2;
+    WeightBox pw3;
+    WeightBox pw4;
+    printf("\n--- Start doWeightBox() ---\n\n");
+/*WeightBox pw1(8, 6, 4, 25);*/
+    __WeightBox_CTOR_d_d_d_d__(&pw1, 8, 6, 4, 25);
+
+    /* WeightBox pw2(1, 2, 3);*/
+    __WeightBox_CTOR_d_d_d__(&pw2, 1, 2, 3);
+    /* WeightBox pw3(10, 20, 30, 15);*/
+    __WeightBox_CTOR_d_d_d_d__(&pw3, 10, 20, 30, 15);
 
     printf("\npw4 is copy-constructed from pw1\n");
-    WeightBox pw4 = pw1;
-    pw4.printw();
-    pw1.printw();
-    printf("pw4 %s pw1\n", pw4 == pw1 ? "equals" : "does not equal");
+    /*  WeightBox pw4 = pw1;*/
+    __WeightBox_COPY_CTOR__(&pw4,&pw1);
+
+    /*  pw4.printw();*/
+    __WeightBox_printw__(&pw4);
+    /* pw1.printw();*/
+    __WeightBox_printw__(&pw1);
+
+    printf("pw4 %s pw1\n",
+           pw4.box.height == pw1.box.width && pw4.box.height == pw1.box.height && pw4.box.length == pw1.box.length &&
+                   pw4.weight == pw1.weight ? "equals" : "does not equal");
 
     printf("\npw4 is copy-assigned from pw3\n");
-    pw4 = pw3;
-    pw4.printw();
-    pw3.printw();
-    printf("pw4 %s pw3\n", pw4 == pw3 ? "equals" : "does not equal");
+    /* pw4 = pw3;*/
+    pw4 = __WeightBox__operator_Assignment_p_p(&pw4, &pw3);
+
+    /* pw4.printw();*/
+    __WeightBox_printw__(&pw4);
+
+    /*   pw3.printw();*/
+    __WeightBox_printw__(&pw3);
+
+
+    printf("pw4 %s pw3\n",
+           pw4.box.height == pw3.box.width && pw4.box.height == pw3.box.height && pw4.box.length == pw3.box.length &&
+           pw4.weight == pw3.weight ? "equals" : "does not equal");
 
     printf("\n--- End doWeightBox() ---\n\n");
+    /*DTOR*/
+    __box_DTOR(&(pw1.box));
+    __WeightBox_DTOR__(&pw1);
+
+    __box_DTOR(&(pw2.box));
+    __WeightBox_DTOR__(&pw2);
+
+    __box_DTOR(&(pw3.box));
+    __WeightBox_DTOR__(&pw3);
+
+    __box_DTOR(&(pw4.box));
+    __WeightBox_DTOR__(&pw4);
 }
-
-
-*/
 
 
 int main() {
@@ -120,8 +163,8 @@ int main() {
 
     doPhysicalBox();
 
-    /*  doWeightBox();
-  */
+    doWeightBox();
+
     printf("\n--- End main() ---\n\n");
 
 }
