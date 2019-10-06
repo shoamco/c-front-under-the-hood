@@ -14,15 +14,18 @@
 
 
 static Box largeBox;
-
-Bool flag_static = false;
-
+/*global variable-the main have to know it for DTOR of static  */
+Bool flag_static_box99 = false;
+Bool flag_static_box88 = false;
+/*static variable -in c its only global ,all file that call the function as the same val*/
+ Box box99;
+ Box box88;
 void thisFunc() {
-    static Box box99;
 
-    if (flag_static == false) {
 
-        __box_CTOR_d_d_d(&box99, 99, 99, 99);
+    if (flag_static_box99 == false) {
+
+        flag_static_box99(&box99, 99, 99, 99);
         flag_static = true;
     }
     printf("\n--- thisFunc() ---\n\n");
@@ -35,10 +38,15 @@ void thisFunc() {
 }
 
 void thatFunc() {
-    static Box box88;
+
     printf("\n--- thatFunc() ---\n\n");
 
-    __box_CTOR_d_d_d(&box88, 88, 88, 88);
+    if (flag_static_box88 == false) {
+
+        __box_CTOR_d_d_d(&box88, 88, 88, 88);
+        flag_static_box88 = true;
+    }
+
     /* box88 *= 10;*/
 
     __operator_Multiplication_Equal_p_d(&box88,10);
@@ -158,7 +166,13 @@ int main() {
     doShelves();
 
     printf("\n--- End main() ---\n\n");
+
+    /*DTOR static variable*/
     __box_DTOR(&largeBox);
+    if(flag_static_box99)
+        __box_DTOR(&box99);
+    if(flag_static_box88)
+        __box_DTOR(&box88);
     return 0;
 }
 
