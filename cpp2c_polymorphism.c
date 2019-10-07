@@ -2,34 +2,41 @@
 
 
 
-void** g_virtual_tables_TextFormatter ={&__v_TextFormatter_DTOR_p__};
-void** g_virtual_tables_DefaultTextFormatter ={&__v_print__DefaultTextFormatter_p_cc__,&__v_print__DefaultTextFormatter_p_cc__};
-void** g_virtual_tables_PrePostFixer ={&__v_PrePostFixer_DTOR_p__,&__v_print__PrePostFixer_p_cc__};
 
 void doPrePostFixer()
 {
     PrePostFixer angleBrackets;
+
     printf("\n--- start doPrePostFixer() ---\n\n");
 
     /*PrePostFixer angleBrackets("<<< ", " >>>");*/
     __PrePostFixer_CTOR_p_cc_cc__(&angleBrackets,"<<< ", " >>>");
     /*angleBrackets.print("Hello World!");*/
     __v_print__PrePostFixer_p_cc__(&angleBrackets,"Hello World!");
-    /*  angleBrackets.print(-777);----->inline static binding*/
+    /*  angleBrackets.print(-777);----->inline ,static binding*/
     printf("%-60s | ", "[PrePostFixer::print(long, char)]");
     printf("-->\n");
     /* print_num(num);--->inline*/
     printf("%-60s | ","[PrePostFixer::print_num(long)]");
     printf("%s%ld%s\n", "<<< ", -777, " >>>");
 
+/* angleBrackets.print(350, '#');-->inline ,static binding*/
 
-/*
+    printf("%-60s | ","[PrePostFixer::print(long, char)]");
+    printf("-->\n");
+        /*print_num(num, symbol);--->inline */
+
+    printf("%-60s | ","[PrePostFixer::print_num(long, char)]");
+    printf("%s%c%ld%s\n", "<<< ", '#', 350, " >>>");
 
 
-    angleBrackets.print(-777);
-    angleBrackets.print(350, '#');
-    angleBrackets.print(static_cast<long int>(3.14));
-*/
+
+/*    angleBrackets.print(static_cast<long int>(3.14));-->inline,static binding*/
+
+
+    printf("%-60s | ","[PrePostFixer::print_num(long)]");
+
+    printf("%s%ld%s\n", "<<< ",3.14, " >>>");
     printf("\n--- end doPrePostFixer() ---\n\n");
 }
 /*

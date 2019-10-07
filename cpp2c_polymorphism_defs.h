@@ -13,8 +13,9 @@ typedef enum {
     false = 0,
     true = 1
 } Bool;
-/*typedef void (*vptr)();*/
 
+typedef void* (vptr) (void*, ...);/*vptr is type of pointer to function */
+typedef vptr* VirtualTablePointer;/*VirtualTablePointer is type of pointer to Virtual Table */
 
 /*vptr g_virtual_tables_TextFormatter[2];*/
 
@@ -22,6 +23,7 @@ typedef enum {
 
 typedef struct TextFormatter
 {
+    VirtualTablePointer tablePointer;
 /*
  *  virtual ~TextFormatter() { }; -->add to virtual table
     virtual void print(const char* text) const = 0;--->pure virtual
@@ -35,7 +37,10 @@ typedef struct Ider Ider;
 typedef struct DefaultTextFormatter
 {
    /* inheritance  TextFormatter*/
+   TextFormatter textFormatter;
 
+
+   /*DefaultTextFormatter*/
     struct Ider
     {
    /* private:
@@ -57,7 +62,8 @@ DefaultTextFormatter __DefaultTextFormatter_Assignment_p_p__(DefaultTextFormatte
 typedef struct PrePostFixer
 {
     /* inheritance  DefaultTextFormatter*/
-
+    DefaultTextFormatter defaultTextFormatter;
+/* PrePostFixer*/
     const char* pre;
     const char* post;
 }PrePostFixer;
@@ -65,7 +71,7 @@ void  __PrePostFixer_CTOR_p_cc_cc__(PrePostFixer *const this,const char* prefix,
 
 void __v_PrePostFixer_DTOR_p__(PrePostFixer *const this);
 void __v_print__PrePostFixer_p_cc__(const PrePostFixer *const this,const char* text);
-void __v_print__PrePostFixer_p_l__(const PrePostFixer *const this,long num);
+
 /*
 inline void printFunc(const char* fname)
 {

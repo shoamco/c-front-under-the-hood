@@ -2,13 +2,24 @@
 
 /*g_virtual_tables_TextFormatter[0]=v;*/
 next_id = 0;
+
+VirtualTablePointer g_virtual_tables_TextFormatter ={&__v_TextFormatter_DTOR_p__};
+VirtualTablePointer g_virtual_tables_DefaultTextFormatter ={&__v_print__DefaultTextFormatter_p_cc__,&__v_print__DefaultTextFormatter_p_cc__};
+VirtualTablePointer g_virtual_tables_PrePostFixer ={&__v_PrePostFixer_DTOR_p__,&__v_print__PrePostFixer_p_cc__};
 void __v_TextFormatter_DTOR_p__(TextFormatter *this) {
 
 
 }
-
+/*//// DefaultTextFormatter Defs ////////////*/
 
 void __DefaultTextFormatter_CTOR_p__(DefaultTextFormatter *const this) {
+    /*first call all bace CTOR c */
+    /*update pinter virtual table to TextFormatter table*/
+    this->textFormatter.tablePointer=g_virtual_tables_TextFormatter;
+    /*update pinter virtual table to DefaultTextFormatter table*/
+    this->textFormatter.tablePointer=g_virtual_tables_DefaultTextFormatter;
+
+    /*member*/
     this->id = next_id++;
     printf("--- DefaultTextFormatter Default CTOR\n########## C %d ##########\n", this->id);
 }
@@ -32,7 +43,8 @@ DefaultTextFormatter __DefaultTextFormatter_Assignment_p_p__(DefaultTextFormatte
     printf("--- DefaultTextFormatter operator=(), from id: %d to id: %d\n", other->id, this->id);
     return *this;
 }
-
+/*
+//// PrePostFixer Defs ////////////*/
 void __v_PrePostFixer_DTOR_p__(PrePostFixer *const this) {
     printf("--- PrePostFixer DTOR: \"%s\"...\"%s\"\n", this->pre, this->post);
 }
@@ -45,16 +57,17 @@ void __v_print__PrePostFixer_p_cc__(const PrePostFixer *const this, const char *
 }
 
 void __PrePostFixer_CTOR_p_cc_cc__(PrePostFixer *const this, const char *prefix, const char *postfix) {
+    /*first call bace CTOR*/
+    __DefaultTextFormatter_CTOR_p__(&(this->defaultTextFormatter));
     /* member initializer lists*/
     this->pre=prefix;
     this->post=postfix;
     printf("--- PrePostFixer CTOR: \"%s\"...\"%s\"\n", this->pre, this->post);
 }
-/*g_virtual_tables_TextFormatter={v};
- */
+
+
+
 /*
-
-
 
 //// DefaultTextFormatter Defs ////////////
 
