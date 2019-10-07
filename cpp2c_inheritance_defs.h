@@ -7,7 +7,8 @@
 
 /*/// Materials ///////////*/
 /*static function-in c its only global-all file can call this function and not only one file(not static in c) */
-typedef enum Types{
+
+typedef enum Types{/*enum type only declaration-outside the struct Materials*/
         PLASTIC,
         METAL,
         WOOD,
@@ -17,6 +18,8 @@ typedef enum Types{
 
 typedef struct Materials
 {
+    /*empty struct-physical size =1*/
+    /*getName-is implicit inline-because of the definition inside the struct*/
 }Materials;
 
 
