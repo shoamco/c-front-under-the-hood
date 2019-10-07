@@ -142,16 +142,16 @@ void doWeightBox() {
 
     printf("\n--- End doWeightBox() ---\n\n");
     /*DTOR*/
-    __box_DTOR(&(pw1.box));
+
     __WeightBox_DTOR__(&pw1);
 
-    __box_DTOR(&(pw2.box));
+
     __WeightBox_DTOR__(&pw2);
 
-    __box_DTOR(&(pw3.box));
+
     __WeightBox_DTOR__(&pw3);
 
-    __box_DTOR(&(pw4.box));
+
     __WeightBox_DTOR__(&pw4);
 }
 

@@ -84,6 +84,8 @@ void __WeightBox_COPY_CTOR__(WeightBox *this, WeightBox *other) {
 
 }
 void __WeightBox_DTOR__(WeightBox *this){
+    /*DTOR bace class-first*/
+    __box_DTOR(&(this->box));
     printf("Destructing WeightBox; ");
     __WeightBox_printw__(this);
 }
