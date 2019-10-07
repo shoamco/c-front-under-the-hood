@@ -11,7 +11,7 @@ void __PhysicalBox_CTOR_d_d_d__(PhysicalBox *const this, double l, double w, dou
 
     __box_CTOR_d_d_d(&(this->box), l, w, h);
     /*inline CTOR Materials member*/
-    this->material.material = 0;
+    this->material.material = OTHER;
     __printp_cpc__(this);
 
 }
