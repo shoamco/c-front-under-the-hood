@@ -13,7 +13,7 @@ typedef enum {
     false = 0,
     true = 1
 } Bool;
-typedef void (*vptr)(void);
+/*typedef void (*vptr)();*/
 
 
 /*vptr g_virtual_tables_TextFormatter[2];*/
@@ -28,11 +28,11 @@ typedef struct TextFormatter
     */
 
 }TextFormatter;
-void __TextFormatter_DTOR__();
+void __v_TextFormatter_DTOR_p__(TextFormatter *const this);
 /*/// DefaultTextFormatter ////////////*/
- int next_id;/*static variable -> global */
-
-struct DefaultTextFormatter
+extern int next_id;/*static variable -> global */
+typedef struct Ider Ider;
+typedef struct DefaultTextFormatter
 {
    /* inheritance  TextFormatter*/
 
@@ -44,20 +44,28 @@ struct DefaultTextFormatter
         static int getId() { return next_id++; }
         */
     };
+    int id;
 
-    const int id;
+}DefaultTextFormatter;
+void   __DefaultTextFormatter_CTOR_p__(DefaultTextFormatter *const this);
+void __DefaultTextFormatter_copy_CTOR_p__(DefaultTextFormatter *const this,const DefaultTextFormatter const*other);
+void __v_DefaultTextFormatter_DTOR_p__(DefaultTextFormatter *const this);
+void __v_print__DefaultTextFormatter_p_cc__(const DefaultTextFormatter *const this,const char* text);
+DefaultTextFormatter __DefaultTextFormatter_Assignment_p_p__(DefaultTextFormatter *const this,const DefaultTextFormatter const*other);
 
-};
-void __DefaultTextFormatter_DTOR__();
 
-struct PrePostFixer
+typedef struct PrePostFixer
 {
     /* inheritance  DefaultTextFormatter*/
 
     const char* pre;
     const char* post;
-};
-void __PrePostFixer_DTOR__();
+}PrePostFixer;
+void  __PrePostFixer_CTOR_p_cc_cc__(PrePostFixer *const this,const char* prefix, const char* postfix);
+
+void __v_PrePostFixer_DTOR_p__(PrePostFixer *const this);
+void __v_print__PrePostFixer_p_cc__(const PrePostFixer *const this,const char* text);
+void __v_print__PrePostFixer_p_l__(const PrePostFixer *const this,long num);
 /*
 inline void printFunc(const char* fname)
 {

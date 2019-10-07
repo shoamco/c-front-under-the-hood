@@ -1,8 +1,54 @@
 #include "cpp2c_polymorphism_defs.h"
-vptr v =  &__TextFormatter_DTOR__;
-/*g_virtual_tables_TextFormatter[0]=v;*/
-void __TextFormatter_DTOR__(){
 
+/*g_virtual_tables_TextFormatter[0]=v;*/
+next_id = 0;
+void __v_TextFormatter_DTOR_p__(TextFormatter *this) {
+
+
+}
+
+
+void __DefaultTextFormatter_CTOR_p__(DefaultTextFormatter *const this) {
+    this->id = next_id++;
+    printf("--- DefaultTextFormatter Default CTOR\n########## C %d ##########\n", this->id);
+}
+void __DefaultTextFormatter_copy_CTOR_p__(DefaultTextFormatter *const this,const DefaultTextFormatter const*other){
+   this->id=other->id;
+    printf("--- DefaultTextFormatter Copy CTOR, from id: %d\n########## C %d ##########\n", other->id, this->id);
+}
+void __v_DefaultTextFormatter_DTOR_p__(DefaultTextFormatter *const this) {
+    printf("--- DefaultTextFormatter DTOR\n########## D %d ##########\n", this->id);
+}
+
+void __v_print__DefaultTextFormatter_p_cc__(const DefaultTextFormatter *const this, const char *text) {
+  /*  printFunc("[DefaultTextFormatter::print(const char*)]");-->inline*/
+    printf("%-60s | ", "[DefaultTextFormatter::print(const char*)]");
+    printf("%s\n", text);
+
+}
+DefaultTextFormatter __DefaultTextFormatter_Assignment_p_p__(DefaultTextFormatter *const this,const DefaultTextFormatter const*other)
+{
+    this->id=other->id;
+    printf("--- DefaultTextFormatter operator=(), from id: %d to id: %d\n", other->id, this->id);
+    return *this;
+}
+
+void __v_PrePostFixer_DTOR_p__(PrePostFixer *const this) {
+    printf("--- PrePostFixer DTOR: \"%s\"...\"%s\"\n", this->pre, this->post);
+}
+
+void __v_print__PrePostFixer_p_cc__(const PrePostFixer *const this, const char *text) {
+
+  /*  printFunc("[PrePostFixer::print(const char*)]");-->inline*/
+    printf("%-60s | ", "[PrePostFixer::print(const char*)]");
+    printf("%s%s%s\n", this->pre, text, this->post);
+}
+
+void __PrePostFixer_CTOR_p_cc_cc__(PrePostFixer *const this, const char *prefix, const char *postfix) {
+    /* member initializer lists*/
+    this->pre=prefix;
+    this->post=postfix;
+    printf("--- PrePostFixer CTOR: \"%s\"...\"%s\"\n", this->pre, this->post);
 }
 /*g_virtual_tables_TextFormatter={v};
  */
