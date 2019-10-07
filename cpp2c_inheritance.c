@@ -114,7 +114,7 @@ void doWeightBox() {
 
     printf("\npw4 is copy-constructed from pw1\n");
     /*  WeightBox pw4 = pw1;*/
-    __WeightBox_COPY_CTOR__(&pw4,&pw1);
+    __WeightBox_COPY_CTOR__(&pw4,&pw1);/*copy CTOR*/
 
     /*  pw4.printw();*/
     __WeightBox_printw__(&pw4);
