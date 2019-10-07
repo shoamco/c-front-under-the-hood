@@ -10,12 +10,15 @@
 void __PhysicalBox_CTOR_d_d_d__(PhysicalBox *const this, double l, double w, double h) {
 
     __box_CTOR_d_d_d(&(this->box), l, w, h);
+    /*inline CTOR Materials member*/
+    this->material.material = 0;
     __printp_cpc__(this);
 
 }
 
 void __PhysicalBox_CTOR_d_d_d_t__(PhysicalBox *const this, double l, double w, double h, Types t) {
     __box_CTOR_d_d_d(&(this->box), l, w, h);
+    /*inline CTOR Materials member*/
     this->material.material = t;
     __printp_cpc__(this);
 
