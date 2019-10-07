@@ -14,8 +14,8 @@ void doMaterials() {
     Material_t mat2;
     printf("\n--- Start doMaterials() ---\n\n");
     /*size of empty struct in c =1*/
-    printf("Size of Materials: %lu\n", sizeof(Materials) + 1);
-    printf("Size of mat: %lu\n", sizeof(mat) + 1);
+    printf("Size of Materials: %lu\n", 1);/*sizeof-in compilation therefore we give to size of 1*/
+    printf("Size of mat: %lu\n", 1);/*sizeof-in compilation therefore we give to size of 1*/
     printf("Size of Materials::Types: %lu\n", sizeof(Types));
     printf("Size of Material_t: %lu\n", sizeof(Material_t));
 
