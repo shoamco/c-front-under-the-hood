@@ -7,6 +7,12 @@
 
 
 #include <stdio.h>
+/*virtual tables:*/
+/*
+extern  VirtualTablePointer g_virtual_tables_TextFormatter ;
+extern  VirtualTablePointer g_virtual_tables_DefaultTextFormatter ;
+extern  VirtualTablePointer g_virtual_tables_PrePostFixer;
+ */
 
 
 typedef enum {
@@ -43,10 +49,7 @@ typedef struct DefaultTextFormatter
    /*DefaultTextFormatter member: */
     struct Ider
     {
-   /* private:
-        static int next_id;/*global
-
-        */
+   /*static int next_id;/*global*/
     };
     int id;
 
@@ -60,6 +63,8 @@ void __DefaultTextFormatter_copy_CTOR_p__(DefaultTextFormatter *const this,const
 void __v_DefaultTextFormatter_DTOR_p__(DefaultTextFormatter *const this);
 void __v_print__DefaultTextFormatter_p_cc__(const DefaultTextFormatter *const this,const char* text);
 DefaultTextFormatter __DefaultTextFormatter_Assignment_p_p__(DefaultTextFormatter *const this,const DefaultTextFormatter const*other);
+
+
 
 /*PrePostFixer is class polymorphism that heiress from: ---->DefaultTextFormatter  ---> TextFormatter*/
 typedef struct PrePostFixer
@@ -79,6 +84,39 @@ typedef struct PrePostFixer
 void  __PrePostFixer_CTOR_p_cc_cc__(PrePostFixer *const this,const char* prefix, const char* postfix);
 void __v_PrePostFixer_DTOR_p__(PrePostFixer *const this);
 void __v_print__PrePostFixer_p_cc__(const PrePostFixer *const this,const char* text);
+void __v_print__PrePostFixer_p_l_c__(const PrePostFixer *const this,long num, char symbol ) ;
+void __v_print__PrePostFixer_p_l__(const PrePostFixer *const this,long num) ;
+void __v_getDefaultSymbol__PrePostFixer_p__(const PrePostFixer *const this) ;
+
+
+
+
+
+/*/// PrePostDollarFixer ////////////*/
+
+/*PrePostDollarFixer is class polymorphism that heiress from: ----> PrePostFixer---> DefaultTextFormatter  ---> TextFormatter*/
+typedef struct PrePostDollarFixer
+{
+    /* inheritance  PrePostFixer*/
+    PrePostFixer prePostFixer;
+    /*member class */
+  /*  static const char DEFAULT_SYMBOL = '$';  ---->  literal */
+
+/*public:
+    PrePostDollarFixer(const char* prefix, const char* postfix);
+    PrePostDollarFixer(const PrePostDollarFixer& other);
+    ~PrePostDollarFixer();
+
+    void print(int num, char symbol = DEFAULT_SYMBOL) const;
+    void print(long num, char symbol = DEFAULT_SYMBOL) const;
+    void print(double num, char symbol = DEFAULT_SYMBOL) const;
+    char getDefaultSymbol() const;
+    */
+}PrePostDollarFixer;
+
+
+
+
 
 /*
 inline void printFunc(const char* fname)

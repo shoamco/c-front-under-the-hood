@@ -1,7 +1,10 @@
 #include "cpp2c_polymorphism_defs.h"
 
 
+/*
+gcc cpp2c_polymorphism.c cpp2c_polymorphism_defs.h cpp2c_polymorphism_defs.c  -std=gnu90 -Wall -pedantic -Wconversion -Wconversion -ansi -o a
 
+ * */
 
 void doPrePostFixer()
 {
@@ -11,8 +14,12 @@ void doPrePostFixer()
 
     /*PrePostFixer angleBrackets("<<< ", " >>>");*/
     __PrePostFixer_CTOR_p_cc_cc__(&angleBrackets,"<<< ", " >>>");
+
+
     /*angleBrackets.print("Hello World!");*/
     __v_print__PrePostFixer_p_cc__(&angleBrackets,"Hello World!");
+
+
     /*  angleBrackets.print(-777);----->inline ,static binding*/
     printf("%-60s | ", "[PrePostFixer::print(long, char)]");
     printf("-->\n");
@@ -20,38 +27,37 @@ void doPrePostFixer()
     printf("%-60s | ","[PrePostFixer::print_num(long)]");
     printf("%s%ld%s\n", "<<< ", -777, " >>>");
 
-/* angleBrackets.print(350, '#');-->inline ,static binding*/
 
+/* angleBrackets.print(350, '#');-->inline ,static binding*/
     printf("%-60s | ","[PrePostFixer::print(long, char)]");
     printf("-->\n");
         /*print_num(num, symbol);--->inline */
-
     printf("%-60s | ","[PrePostFixer::print_num(long, char)]");
     printf("%s%c%ld%s\n", "<<< ", '#', 350, " >>>");
 
 
-
 /*    angleBrackets.print(static_cast<long int>(3.14));-->inline,static binding*/
-
     printf("%-60s | ","[PrePostFixer::print_num(long)]");
-
     printf("%s%ld%s\n", "<<< ",3.14, " >>>");
     printf("\n--- end doPrePostFixer() ---\n\n");
+
+
     __v_PrePostFixer_DTOR_p__(&angleBrackets);
 }
-/*
+
 void doPrePostDollarFixer()
 {
     printf("\n--- start doPrePostDollarFixer() ---\n\n");
 
-    PrePostDollarFixer asterisks("***** ", " *****");
+  /*  PrePostDollarFixer asterisks("***** ", " *****");
     asterisks.print(-777);
     asterisks.print(350, '#');
     asterisks.print(3.14f);
+    */
 
     printf("\n--- end doPrePostDollarFixer() ---\n\n");
 }
-
+/*
 void doPrePostChecker()
 {
     printf("\n--- start doPrePostChecker() ---\n\n");
@@ -192,8 +198,8 @@ int main()
     printf("\n--- Start main() ---\n\n");
 
     doPrePostFixer();
-    /* doPrePostDollarFixer();
-     doPrePostFloatDollarFixer();
+     doPrePostDollarFixer();
+    /* doPrePostFloatDollarFixer();
      doPrePostChecker();
 
      PrePostHashFixer hfix;

@@ -20,9 +20,13 @@
 next_id = 0;
 
 /*virtual tables:*/
-VirtualTablePointer g_virtual_tables_TextFormatter ={&__v_TextFormatter_DTOR_p__};
-VirtualTablePointer g_virtual_tables_DefaultTextFormatter ={&__v_print__DefaultTextFormatter_p_cc__,&__v_print__DefaultTextFormatter_p_cc__};
-VirtualTablePointer g_virtual_tables_PrePostFixer ={&__v_PrePostFixer_DTOR_p__,&__v_print__PrePostFixer_p_cc__};
+VirtualTablePointer g_virtual_tables_TextFormatter = {&__v_TextFormatter_DTOR_p__};
+VirtualTablePointer g_virtual_tables_DefaultTextFormatter = {&__v_DefaultTextFormatter_DTOR_p__,
+                                                             &__v_print__DefaultTextFormatter_p_cc__};
+VirtualTablePointer g_virtual_tables_PrePostFixer = {&__v_PrePostFixer_DTOR_p__, &__v_print__PrePostFixer_p_cc__,
+                                                     &__v_print__PrePostFixer_p_l_c__, &__v_print__PrePostFixer_p_l__,
+                                                     &__v_getDefaultSymbol__PrePostFixer_p__};
+/*VirtualTablePointer g_virtual_tables_PrePostDollarFixer = {};*/
 
 /*//// TextFormatter Defs ////////////*/
 
@@ -30,12 +34,13 @@ void __v_TextFormatter_DTOR_p__(TextFormatter *this) {
 
 
 }
+
 /*//// DefaultTextFormatter Defs ////////////*/
 
 void __DefaultTextFormatter_CTOR_p__(DefaultTextFormatter *const this) {
     /*first call all bace CTOR c -default*/
     /*update pinter virtual table to TextFormatter table*/
-    this->textFormatter.tablePointer=g_virtual_tables_DefaultTextFormatter;
+    this->textFormatter.tablePointer = g_virtual_tables_DefaultTextFormatter;
 
     /*member class*/
     this->id = next_id++;
@@ -43,32 +48,35 @@ void __DefaultTextFormatter_CTOR_p__(DefaultTextFormatter *const this) {
 
 
 }
-void __DefaultTextFormatter_copy_CTOR_p__(DefaultTextFormatter *const this,const DefaultTextFormatter const*other){
-    this->textFormatter.tablePointer=other->textFormatter.tablePointer;
-   this->id=other->id;
+
+void __DefaultTextFormatter_copy_CTOR_p__(DefaultTextFormatter *const this, const DefaultTextFormatter const *other) {
+    this->textFormatter.tablePointer = other->textFormatter.tablePointer;
+    this->id = other->id;
     printf("--- DefaultTextFormatter Copy CTOR, from id: %d\n########## C %d ##########\n", other->id, this->id);
 }
 
 
 void __v_print__DefaultTextFormatter_p_cc__(const DefaultTextFormatter *const this, const char *text) {
-  /*  printFunc("[DefaultTextFormatter::print(const char*)]");-->inline*/
+    /*  printFunc("[DefaultTextFormatter::print(const char*)]");-->inline*/
     printf("%-60s | ", "[DefaultTextFormatter::print(const char*)]");
     printf("%s\n", text);
 
 }
-DefaultTextFormatter __DefaultTextFormatter_Assignment_p_p__(DefaultTextFormatter *const this,const DefaultTextFormatter const*other)
-{
+
+DefaultTextFormatter
+__DefaultTextFormatter_Assignment_p_p__(DefaultTextFormatter *const this, const DefaultTextFormatter const *other) {
     __DefaultTextFormatter_CTOR_p__(&(this->textFormatter));
     this->textFormatter.tablePointer;
-    this->id=other->id;
+    this->id = other->id;
     printf("--- DefaultTextFormatter operator=(), from id: %d to id: %d\n", other->id, this->id);
     return *this;
 }
+
 void __v_DefaultTextFormatter_DTOR_p__(DefaultTextFormatter *const this) {
     /*the  content of the DTOR*/
     printf("--- DefaultTextFormatter DTOR\n########## D %d ##########\n", this->id);
     /*update the pointer of virtual table to the bace class virtual table*/
-    this->textFormatter.tablePointer=g_virtual_tables_TextFormatter;
+    this->textFormatter.tablePointer = g_virtual_tables_TextFormatter;
     /*  DTOR of bace class*/
     __v_TextFormatter_DTOR_p__(&(this->textFormatter));
 }
@@ -80,11 +88,11 @@ void __PrePostFixer_CTOR_p_cc_cc__(PrePostFixer *const this, const char *prefix,
     /*first call bace CTOR*/
     __DefaultTextFormatter_CTOR_p__(&(this->defaultTextFormatter));
     /*update pinter virtual table to DefaultTextFormatter table*/
-    this->defaultTextFormatter.textFormatter.tablePointer=g_virtual_tables_PrePostFixer;
+    this->defaultTextFormatter.textFormatter.tablePointer = g_virtual_tables_PrePostFixer;
 
     /* member initializer lists*/
-    this->pre=prefix;
-    this->post=postfix;
+    this->pre = prefix;
+    this->post = postfix;
     /*the  content of the CTOR*/
     printf("--- PrePostFixer CTOR: \"%s\"...\"%s\"\n", this->pre, this->post);
 }
@@ -93,8 +101,8 @@ void __v_PrePostFixer_DTOR_p__(PrePostFixer *const this) {
     /*the  content of the DTOR*/
     printf("--- PrePostFixer DTOR: \"%s\"...\"%s\"\n", this->pre, this->post);
     /* update the pointer of virtual table to the bace class virtual table*/
-    this->defaultTextFormatter.textFormatter.tablePointer=g_virtual_tables_TextFormatter;
-   /*  DTOR of bace class*/
+    this->defaultTextFormatter.textFormatter.tablePointer = g_virtual_tables_TextFormatter;
+    /*  DTOR of bace class*/
     __v_DefaultTextFormatter_DTOR_p__(&(this->defaultTextFormatter));
 }
 
@@ -106,6 +114,28 @@ void __v_print__PrePostFixer_p_cc__(const PrePostFixer *const this, const char *
 }
 
 
+/*this function is not inline when there is a dynamic binding*/
+void __v_print__PrePostFixer_p_l_c__(const PrePostFixer *const this, long num, char symbol) {
+
+    printf("%-60s | ", "[PrePostFixer::print(long, char)]");
+    printf("-->\n");
+
+    if (symbol) {
+        printf("%-60s | ", "[PrePostFixer::print_num(long, char)]");
+        printf("%s%c%ld%s\n", this->pre, symbol, num, this->post);
+    } else {
+        printf("%-60s | ", "[PrePostFixer::print_num(long)]");
+        printf("%s%ld%s\n", this->pre, num, this->post);
+    }
+}
+
+void __v_print__PrePostFixer_p_l__(const PrePostFixer *const this, long num) {
+    __v_print__PrePostFixer_p_l_c__(this, num, '\0');
+}
+
+void __v_getDefaultSymbol__PrePostFixer_p__(const PrePostFixer *const this) {
+
+}
 /*
 
 //// DefaultTextFormatter Defs ////////////
