@@ -21,17 +21,17 @@
 
 /******virtual tables:******/
 /* virtual table of TextFormatter*/
-extern VirtualTablePointer g_virtual_tables_TextFormatter = {&__v_TextFormatter_DTOR_p__};
+ VirtualTablePointer g_virtual_tables_TextFormatter = {__v_TextFormatter_DTOR_p__};
 
 
 /* virtual table* of DefaultTextFormatter*/
-VirtualTablePointer g_virtual_tables_DefaultTextFormatter = {&__v_DefaultTextFormatter_DTOR_p__,
-                                                             &__v_print__DefaultTextFormatter_p_cc__};
+VirtualTablePointer g_virtual_tables_DefaultTextFormatter = {__v_DefaultTextFormatter_DTOR_p__,
+                                                             __v_print__DefaultTextFormatter_p_cc__};
 
 /* virtual table of PrePostFixer*/
-VirtualTablePointer g_virtual_tables_PrePostFixer = {&__v_PrePostFixer_DTOR_p__, &__v_print__PrePostFixer_p_cc__,
-                                                     &__v_print__PrePostFixer_p_l_c__, &__v_print__PrePostFixer_p_l__,
-                                                     &__v_getDefaultSymbol__PrePostFixer_p__};
+VirtualTablePointer g_virtual_tables_PrePostFixer = {__v_PrePostFixer_DTOR_p__, __v_print__PrePostFixer_p_cc__,
+                                                     __v_print__PrePostFixer_p_l_c__, __v_print__PrePostFixer_p_l__,
+                                                     __v_getDefaultSymbol__PrePostFixer_p__};
 
 /* virtual table* of PrePostDollarFixer*/
 VirtualTablePointer g_virtual_tables_PrePostDollarFixer = {&__PrePostDollarFixer_DTOR_p__,

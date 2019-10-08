@@ -22,9 +22,15 @@ typedef void *(vptr)(void *, ...);/*vptr is type of pointer to function */
 typedef vptr *VirtualTablePointer;/*VirtualTablePointer is type of pointer to Virtual Table */
 
 
-/*// TextFormatter ///////////*/
 
-typedef struct TextFormatter/*class polymorphism*/
+/****************  TextFormatter  ****************
+  class polymorphism
+
+  function print is a pure virtual
+
+**************************************************/
+
+typedef struct TextFormatter
 {
     VirtualTablePointer tablePointer;/*pointer to virtual table*/
 
@@ -34,27 +40,30 @@ void __v_TextFormatter_DTOR_p__(TextFormatter *const
 
 this);
 
+/****************  DefaultTextFormatter  *************************************
 
-/*/// DefaultTextFormatter ////////////*/
+  DefaultTextFormatter is class polymorphism that heiress from TextFormatter
+
+  the class overrides (virtual method):
+                     print(const char* text)
+***************************************************************************/
+
+
+
 extern int next_id;/*static variable -> global */
 typedef struct Ider Ider;
 
-/*DefaultTextFormatter is class polymorphism that heiress from TextFormatter*/
+
 typedef struct DefaultTextFormatter {
-    /* inheritance  TextFormatter*/
+    /* heiress from  TextFormatter*/
     TextFormatter textFormatter;/*Contains DefaultTextFormatter */
 
 
     /*DefaultTextFormatter member: */
     struct Ider {
-        /*static int next_id;/*global*/
+        /*static int next_id;/*--->global*/
     };
     int id;
-
-    /*------------the class overrides (virtual method)-----------:
-                     print(const char* text)
-                     */
-
 
 } DefaultTextFormatter;
 
@@ -72,10 +81,26 @@ void __v_print__DefaultTextFormatter_p_cc__(const DefaultTextFormatter *const th
 DefaultTextFormatter __DefaultTextFormatter_Assignment_p_p__(DefaultTextFormatter *const this,const DefaultTextFormatter *const other);
 
 
-/*PrePostFixer is class polymorphism that heiress from: ---->DefaultTextFormatter  ---> TextFormatter*/
+
+/**************************  PrePostFixer  **************************
+
+ PrePostFixer is class polymorphism that heiress from:
+     ----> DefaultTextFormatter  ---> TextFormatter
+
+
+    the class overrides (virtual method):
+                       print(const char* text)
+
+    the class add virtual method :
+                           getDefaultSymbol()
+                           print(long num, char symbol) const;
+
+*******************************************************************************/
+
+
 typedef struct PrePostFixer {
 
-    /* inheritance  DefaultTextFormatter*/
+    /* heiress from  DefaultTextFormatter*/
     DefaultTextFormatter defaultTextFormatter;/*Contains DefaultTextFormatter */
 
     /* PrePostFixer class member*/
@@ -83,14 +108,6 @@ typedef struct PrePostFixer {
     const char *post;
 
 
-    /*------------the class overrides (virtual method)-----------:
-                       print(const char* text)
-
-      -----------------the class add virtual method :-------------
-                           getDefaultSymbol()
-                           print(long num, char symbol) const;
-
-*/
 } PrePostFixer;
 
 /*PrePostFixer function*/
@@ -117,20 +134,26 @@ char __v_getDefaultSymbol__PrePostFixer_p__(const PrePostFixer *const this);
 
 
 
-/*/// PrePostDollarFixer ////////////*/
+/****************  PrePostDollarFixer  ****************
 
-/*PrePostDollarFixer is class polymorphism that heiress from: ----> PrePostFixer---> DefaultTextFormatter  ---> TextFormatter*/
+ PrePostDollarFixer is class polymorphism that heiress from:
+ ----> PrePostFixer---> DefaultTextFormatter  ---> TextFormatter
+
+
+ the class overrides  (virtual method):
+                print(long num, char symbol = DEFAULT_SYMBOL) const;
+                getDefaultSymbol()
+
+*************************************************************/
+
+
 typedef struct PrePostDollarFixer {
-    /* inheritance  PrePostFixer*/
+    /* heiress from  PrePostFixer*/
     PrePostFixer prePostFixer;
+
     /*member class */
     /*  static const char DEFAULT_SYMBOL = '$';  ---->  literal */
 
-
-    /*------the class overrides  (virtual method)-------:
-                print(long num, char symbol = DEFAULT_SYMBOL) const;
-                getDefaultSymbol()
-  */
 
 } PrePostDollarFixer;
 
@@ -150,7 +173,38 @@ void __print_PrePostDollarFixer_d__(const PrePostDollarFixer *const this,double 
 void __print_PrePostDollarFixer_d_c__(const PrePostDollarFixer *const this,double num, char symbol);
 
 
+/****************  PrePostHashFixer  ****************
+   PrePostHashFixer is class polymorphism that heiress from:
+            ----> PrePostDollarFixer---->PrePostFixer---> DefaultTextFormatter  ---> TextFormatter
 
+  the class overrides  (virtual method):
+            print(long num, char symbol = DEFAULT_SYMBOL) const;
+            getDefaultSymbol()
+
+*************************************************************/
+
+
+
+typedef struct PrePostHashFixer{
+    /* heiress from  PrePostDollarFixer*/
+    PrePostDollarFixer prePostDollarFixer;
+
+
+    /*static const char DEFAULT_SYMBOL = '#';---->literal*/
+    /*
+
+    PrePostHashFixer(int prc = 4);
+    ~PrePostHashFixer();
+
+    void print(int num, char symbol = DEFAULT_SYMBOL) const;
+    void print(long num, char symbol = DEFAULT_SYMBOL) const;
+    void print(double num, char symbol = DEFAULT_SYMBOL) const;
+    char getDefaultSymbol() const;
+
+private:
+ */
+    int precision;
+}PrePostHashFixer;
 /*
 inline void printFunc(const char* fname)
 {
