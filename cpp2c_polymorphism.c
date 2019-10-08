@@ -25,7 +25,7 @@ void doPrePostFixer()
     printf("-->\n");
     /* print_num(num);--->inline*/
     printf("%-60s | ","[PrePostFixer::print_num(long)]");
-    printf("%s%ld%s\n", "<<< ", -777, " >>>");
+    printf("%s%d%s\n", "<<< ", -777, " >>>");
 
 
 /* angleBrackets.print(350, '#');-->inline ,static binding*/
@@ -38,7 +38,7 @@ void doPrePostFixer()
 
 /*    angleBrackets.print(static_cast<long int>(3.14));-->inline,static binding*/
     printf("%-60s | ","[PrePostFixer::print_num(long)]");
-    printf("%s%ld%s\n", "<<< ",3.14, " >>>");
+    printf("%s%f%s\n", "<<< ",3.14, " >>>");
     printf("\n--- end doPrePostFixer() ---\n\n");
 
 

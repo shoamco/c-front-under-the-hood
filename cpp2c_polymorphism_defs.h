@@ -4,8 +4,6 @@
 #define CPP_UTH_ENCAPSULATION_SHOAMCO_CPP2C_POLYMORPHISM_DEFS_H
 
 
-
-
 #include <stdio.h>
 /*virtual tables:*/
 /*
@@ -20,8 +18,8 @@ typedef enum {
     true = 1
 } Bool;
 
-typedef void* (vptr) (void*, ...);/*vptr is type of pointer to function */
-typedef vptr* VirtualTablePointer;/*VirtualTablePointer is type of pointer to Virtual Table */
+typedef void *(vptr)(void *, ...);/*vptr is type of pointer to function */
+typedef vptr *VirtualTablePointer;/*VirtualTablePointer is type of pointer to Virtual Table */
 
 
 /*// TextFormatter ///////////*/
@@ -30,8 +28,11 @@ typedef struct TextFormatter/*class polymorphism*/
 {
     VirtualTablePointer tablePointer;/*pointer to virtual table*/
 
-}TextFormatter;
-void __v_TextFormatter_DTOR_p__(TextFormatter *const this);
+} TextFormatter;
+
+void __v_TextFormatter_DTOR_p__(TextFormatter *const
+
+this);
 
 
 /*/// DefaultTextFormatter ////////////*/
@@ -39,54 +40,78 @@ extern int next_id;/*static variable -> global */
 typedef struct Ider Ider;
 
 /*DefaultTextFormatter is class polymorphism that heiress from TextFormatter*/
-typedef struct DefaultTextFormatter
-{
-   /* VirtualTablePointer tablePointerDefaultTextFormatter;/*pointer to virtual table*/
-   /* inheritance  TextFormatter*/
-   TextFormatter textFormatter;/*Contains DefaultTextFormatter */
+typedef struct DefaultTextFormatter {
+    /* inheritance  TextFormatter*/
+    TextFormatter textFormatter;/*Contains DefaultTextFormatter */
 
 
-   /*DefaultTextFormatter member: */
-    struct Ider
-    {
-   /*static int next_id;/*global*/
+    /*DefaultTextFormatter member: */
+    struct Ider {
+        /*static int next_id;/*global*/
     };
     int id;
 
-}DefaultTextFormatter;
+    /*------------the class overrides (virtual method)-----------:
+                     print(const char* text)
+                     */
+
+
+} DefaultTextFormatter;
 
 /*DefaultTextFormatter function:*/
 
 /*Default CTOR inline*/
-void   __DefaultTextFormatter_CTOR_p__(DefaultTextFormatter *const this);
-void __DefaultTextFormatter_copy_CTOR_p__(DefaultTextFormatter *const this,const DefaultTextFormatter const*other);
-void __v_DefaultTextFormatter_DTOR_p__(DefaultTextFormatter *const this);
-void __v_print__DefaultTextFormatter_p_cc__(const DefaultTextFormatter *const this,const char* text);
-DefaultTextFormatter __DefaultTextFormatter_Assignment_p_p__(DefaultTextFormatter *const this,const DefaultTextFormatter const*other);
+void __DefaultTextFormatter_CTOR_p__(DefaultTextFormatter *const this);
 
+void __DefaultTextFormatter_copy_CTOR_p__(DefaultTextFormatter *const this,const DefaultTextFormatter const *other);
+
+void __v_DefaultTextFormatter_DTOR_p__(DefaultTextFormatter *const this);
+
+void __v_print__DefaultTextFormatter_p_cc__(const DefaultTextFormatter *const this,const char *text);
+
+DefaultTextFormatter __DefaultTextFormatter_Assignment_p_p__(DefaultTextFormatter *const this,const DefaultTextFormatter *const other);
 
 
 /*PrePostFixer is class polymorphism that heiress from: ---->DefaultTextFormatter  ---> TextFormatter*/
-typedef struct PrePostFixer
-{
-  /*  VirtualTablePointer tablePointerPrePostFixer;/*pointer to virtual table*/
+typedef struct PrePostFixer {
 
     /* inheritance  DefaultTextFormatter*/
     DefaultTextFormatter defaultTextFormatter;/*Contains DefaultTextFormatter */
 
+    /* PrePostFixer class member*/
+    const char *pre;
+    const char *post;
 
-  /* PrePostFixer class member*/
-    const char* pre;
-    const char* post;
-}PrePostFixer;
+
+    /*------------the class overrides (virtual method)-----------:
+                       print(const char* text)
+
+      -----------------the class add virtual method :-------------
+                           getDefaultSymbol()
+                           print(long num, char symbol) const;
+
+*/
+} PrePostFixer;
 
 /*PrePostFixer function*/
-void  __PrePostFixer_CTOR_p_cc_cc__(PrePostFixer *const this,const char* prefix, const char* postfix);
-void __v_PrePostFixer_DTOR_p__(PrePostFixer *const this);
-void __v_print__PrePostFixer_p_cc__(const PrePostFixer *const this,const char* text);
-void __v_print__PrePostFixer_p_l_c__(const PrePostFixer *const this,long num, char symbol ) ;
-void __v_print__PrePostFixer_p_l__(const PrePostFixer *const this,long num) ;
-void __v_getDefaultSymbol__PrePostFixer_p__(const PrePostFixer *const this) ;
+void __PrePostFixer_CTOR_p_cc_cc__(PrePostFixer *const
+
+this,
+const char *prefix,
+const char *postfix
+);
+
+void __v_PrePostFixer_DTOR_p__(PrePostFixer *const
+
+this);
+
+void __v_print__PrePostFixer_p_cc__(const PrePostFixer *const this,const char *text);/*override*/
+
+void __v_print__PrePostFixer_p_l_c__(const PrePostFixer *const this,long num,char symbol);
+
+void __v_print__PrePostFixer_p_l__(const PrePostFixer *const this,long num);
+
+char __v_getDefaultSymbol__PrePostFixer_p__(const PrePostFixer *const this);
 
 
 
@@ -95,26 +120,29 @@ void __v_getDefaultSymbol__PrePostFixer_p__(const PrePostFixer *const this) ;
 /*/// PrePostDollarFixer ////////////*/
 
 /*PrePostDollarFixer is class polymorphism that heiress from: ----> PrePostFixer---> DefaultTextFormatter  ---> TextFormatter*/
-typedef struct PrePostDollarFixer
-{
+typedef struct PrePostDollarFixer {
     /* inheritance  PrePostFixer*/
     PrePostFixer prePostFixer;
     /*member class */
-  /*  static const char DEFAULT_SYMBOL = '$';  ---->  literal */
-
-/*public:
-    PrePostDollarFixer(const char* prefix, const char* postfix);
-    PrePostDollarFixer(const PrePostDollarFixer& other);
-    ~PrePostDollarFixer();
-
-    void print(int num, char symbol = DEFAULT_SYMBOL) const;
-    void print(long num, char symbol = DEFAULT_SYMBOL) const;
-    void print(double num, char symbol = DEFAULT_SYMBOL) const;
-    char getDefaultSymbol() const;
-    */
-}PrePostDollarFixer;
+    /*  static const char DEFAULT_SYMBOL = '$';  ---->  literal */
 
 
+    /*------the class overrides  (virtual method)-------:
+                print(long num, char symbol = DEFAULT_SYMBOL) const;
+                getDefaultSymbol()
+  */
+
+} PrePostDollarFixer;
+
+void __PrePostDollarFixer_CTOR_p_cc_cc__(PrePostDollarFixer *this,const char *prefix,const char *postfix);
+void __PrePostDollarFixer_COPY_CTOR_p_p__(PrePostDollarFixer *const this ,const PrePostDollarFixer *other);
+void __PrePostDollarFixer_DTOR_p__(PrePostDollarFixer *const this);
+
+void __v_print__PrePostDollarFixer_p_l_c__(const PrePostDollarFixer *const this,long num,char symbol);/*override*/
+
+void __v_print__PrePostDollarFixer_p_l__(const PrePostDollarFixer *const this,long num);/*override*/
+
+char __v_getDefaultSymbol__PrePostDollarFixer_p__(const PrePostDollarFixer *const this);/*override*/
 
 
 
