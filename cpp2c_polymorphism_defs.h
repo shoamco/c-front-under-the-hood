@@ -184,23 +184,11 @@ typedef struct PrePostHashFixer{
     /* heiress from  PrePostDollarFixer*/
     PrePostDollarFixer prePostDollarFixer;
 
-
     /*static const char DEFAULT_SYMBOL = '#';---->literal*/
-    /*
 
-    PrePostHashFixer(int prc = 4);
-    ~PrePostHashFixer();
-
-    void print(int num, char symbol = DEFAULT_SYMBOL) const;
-    void print(long num, char symbol = DEFAULT_SYMBOL) const;
-    void print(double num, char symbol = DEFAULT_SYMBOL) const;
-    char getDefaultSymbol() const;
-
-private:
- */
     int precision;
 }PrePostHashFixer;
-
+/*method of PrePostHashFixer*/
 void __PrePostHashFixer_CTOR_p__(PrePostHashFixer *this);
 void __PrePostHashFixer_CTOR_p_i__(PrePostHashFixer *this, int prc);
 void __PrePostHashFixer_DTOR_p__(PrePostHashFixer *this);

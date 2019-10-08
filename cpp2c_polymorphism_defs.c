@@ -252,9 +252,11 @@ void __PrePostHashFixer_CTOR_p_i__(PrePostHashFixer *this, int prc) {
            this->prePostDollarFixer.prePostFixer.pre);
 }
 
+
 void __PrePostHashFixer_CTOR_p__(PrePostHashFixer *this) {
     __PrePostHashFixer_CTOR_p_i__(this, 4);
 }
+
 
 void __PrePostHashFixer_DTOR_p__(PrePostHashFixer *this) {
     /* first the  content of the DTOR*/
@@ -264,23 +266,23 @@ void __PrePostHashFixer_DTOR_p__(PrePostHashFixer *this) {
     this->prePostDollarFixer.prePostFixer.defaultTextFormatter.textFormatter.tablePointer = g_virtual_table_PrePostDollarFixer;
     /*DTOR of bace class*/
     __PrePostDollarFixer_DTOR_p__(this);
-
 }
 
-void __v_print__PrePostHashFixer_p_l_c__(const PrePostHashFixer *const this, long num, char symbol)/*override*/{
 
+void __v_print__PrePostHashFixer_p_l_c__(const PrePostHashFixer *const this, long num, char symbol)/*override*/{
     printf("%-60s | ", "[PrePostHashFixer::print(long, char)]");
     printf("-->\n");
    /* print(double(num), symbol);*/
     printf("%-60s | ", "[PrePostHashFixer::print(double, char)]");
-
     printf("%s[%c%.*f]%s\n", this->prePostDollarFixer.prePostFixer.pre, symbol, this->precision, num,
            this->prePostDollarFixer.prePostFixer.post);
 }
 
+
 void __v_print__PrePostHashFixer_p_l__(const PrePostHashFixer *const this, long num)/*override*/{
     __v_print__PrePostHashFixer_p_l_c__(this,num,'#');
 }
+
 
 char __v_getDefaultSymbol__PrePostHashFixer_p__(const PrePostHashFixer *const this)/*override*/{
     return '#';
@@ -291,10 +293,8 @@ void __print_PrePostHashFixer_i_c__(const PrePostHashFixer *const this, int num,
 
     printf("%-60s | ", "[PrePostHashFixer::print(int, char)]");
     printf("-->\n");
-
     /*print(double(num), symbol);---->inline*/
     printf("%-60s | ", "[PrePostHashFixer::print(double, char)]");
-
     printf("%s[%c%.*f]%s\n", this->prePostDollarFixer.prePostFixer.pre, symbol, this->precision, num,
            this->prePostDollarFixer.prePostFixer.post);
 }
