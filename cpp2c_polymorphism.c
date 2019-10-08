@@ -47,15 +47,26 @@ void doPrePostFixer()
 
 void doPrePostDollarFixer()
 {
+    PrePostDollarFixer asterisks;
     printf("\n--- start doPrePostDollarFixer() ---\n\n");
 
-  /*  PrePostDollarFixer asterisks("***** ", " *****");
-    asterisks.print(-777);
-    asterisks.print(350, '#');
-    asterisks.print(3.14f);
-    */
+    /*PrePostDollarFixer asterisks("***** ", " *****")*/
+    __PrePostDollarFixer_CTOR_p_cc_cc__(&asterisks,"***** ", " *****");
+
+    /*asterisks.print(-777); ---->not inline, static binding*/
+    __print_PrePostDollarFixer_i__(&asterisks,-777);
+
+    /*  asterisks.print(350, '#');*/
+    __print_PrePostDollarFixer_i_c__(&asterisks,350,'#');
+
+
+  /*asterisks.print(3.14f);----->not inline*/
+    __print_PrePostDollarFixer_d__(&asterisks,3.14);
+
 
     printf("\n--- end doPrePostDollarFixer() ---\n\n");
+
+    __PrePostDollarFixer_DTOR_p__(&asterisks);
 }
 /*
 void doPrePostChecker()

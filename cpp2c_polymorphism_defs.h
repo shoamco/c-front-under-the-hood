@@ -143,6 +143,11 @@ void __v_print__PrePostDollarFixer_p_l_c__(const PrePostDollarFixer *const this,
 void __v_print__PrePostDollarFixer_p_l__(const PrePostDollarFixer *const this,long num);/*override*/
 
 char __v_getDefaultSymbol__PrePostDollarFixer_p__(const PrePostDollarFixer *const this);/*override*/
+void __print_PrePostDollarFixer_i__(const PrePostDollarFixer *const this,int num);
+void __print_PrePostDollarFixer_i_c__(const PrePostDollarFixer *const this,int num, char symbol);
+
+void __print_PrePostDollarFixer_d__(const PrePostDollarFixer *const this,double num);
+void __print_PrePostDollarFixer_d_c__(const PrePostDollarFixer *const this,double num, char symbol);
 
 
 
