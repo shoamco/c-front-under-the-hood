@@ -33,11 +33,11 @@ void doPrePostFixer()
 
 /*    angleBrackets.print(static_cast<long int>(3.14));-->inline,static binding*/
 
-
     printf("%-60s | ","[PrePostFixer::print_num(long)]");
 
     printf("%s%ld%s\n", "<<< ",3.14, " >>>");
     printf("\n--- end doPrePostFixer() ---\n\n");
+    __v_PrePostFixer_DTOR_p__(&angleBrackets);
 }
 /*
 void doPrePostDollarFixer()
