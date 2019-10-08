@@ -17,58 +17,66 @@ typedef enum {
 typedef void* (vptr) (void*, ...);/*vptr is type of pointer to function */
 typedef vptr* VirtualTablePointer;/*VirtualTablePointer is type of pointer to Virtual Table */
 
-/*vptr g_virtual_tables_TextFormatter[2];*/
 
 /*// TextFormatter ///////////*/
 
-typedef struct TextFormatter
+typedef struct TextFormatter/*class polymorphism*/
 {
-    VirtualTablePointer tablePointer;
-/*
- *  virtual ~TextFormatter() { }; -->add to virtual table
-    virtual void print(const char* text) const = 0;--->pure virtual
-    */
+    VirtualTablePointer tablePointer;/*pointer to virtual table*/
 
 }TextFormatter;
 void __v_TextFormatter_DTOR_p__(TextFormatter *const this);
+
+
 /*/// DefaultTextFormatter ////////////*/
 extern int next_id;/*static variable -> global */
 typedef struct Ider Ider;
+
+/*DefaultTextFormatter is class polymorphism that heiress from TextFormatter*/
 typedef struct DefaultTextFormatter
 {
+   /* VirtualTablePointer tablePointerDefaultTextFormatter;/*pointer to virtual table*/
    /* inheritance  TextFormatter*/
-   TextFormatter textFormatter;
+   TextFormatter textFormatter;/*Contains DefaultTextFormatter */
 
 
-   /*DefaultTextFormatter*/
+   /*DefaultTextFormatter member: */
     struct Ider
     {
    /* private:
         static int next_id;/*global
-    public:
-        static int getId() { return next_id++; }
+
         */
     };
     int id;
 
 }DefaultTextFormatter;
+
+/*DefaultTextFormatter function:*/
+
+/*Default CTOR inline*/
 void   __DefaultTextFormatter_CTOR_p__(DefaultTextFormatter *const this);
 void __DefaultTextFormatter_copy_CTOR_p__(DefaultTextFormatter *const this,const DefaultTextFormatter const*other);
 void __v_DefaultTextFormatter_DTOR_p__(DefaultTextFormatter *const this);
 void __v_print__DefaultTextFormatter_p_cc__(const DefaultTextFormatter *const this,const char* text);
 DefaultTextFormatter __DefaultTextFormatter_Assignment_p_p__(DefaultTextFormatter *const this,const DefaultTextFormatter const*other);
 
-
+/*PrePostFixer is class polymorphism that heiress from: ---->DefaultTextFormatter  ---> TextFormatter*/
 typedef struct PrePostFixer
 {
+  /*  VirtualTablePointer tablePointerPrePostFixer;/*pointer to virtual table*/
+
     /* inheritance  DefaultTextFormatter*/
-    DefaultTextFormatter defaultTextFormatter;
-/* PrePostFixer*/
+    DefaultTextFormatter defaultTextFormatter;/*Contains DefaultTextFormatter */
+
+
+  /* PrePostFixer class member*/
     const char* pre;
     const char* post;
 }PrePostFixer;
-void  __PrePostFixer_CTOR_p_cc_cc__(PrePostFixer *const this,const char* prefix, const char* postfix);
 
+/*PrePostFixer function*/
+void  __PrePostFixer_CTOR_p_cc_cc__(PrePostFixer *const this,const char* prefix, const char* postfix);
 void __v_PrePostFixer_DTOR_p__(PrePostFixer *const this);
 void __v_print__PrePostFixer_p_cc__(const PrePostFixer *const this,const char* text);
 
