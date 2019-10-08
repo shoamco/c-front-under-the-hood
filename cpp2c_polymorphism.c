@@ -68,18 +68,19 @@ void doPrePostDollarFixer()
 
     __PrePostDollarFixer_DTOR_p__(&asterisks);
 }
-/*
+
 void doPrePostChecker()
 {
     printf("\n--- start doPrePostChecker() ---\n\n");
 
-    PrePostChecker check;
+  /*  PrePostChecker check;
     check.printThisSymbolUsingFunc();
     check.printThisSymbolDirectly();
     check.printDollarSymbolByCastDirectly();
     check.printDollarSymbolByScopeDirectly();
     check.printDollarSymbolByCastUsingFunc();
     check.printDollarSymbolByScopeUsingFunc();
+    */
 
     printf("\n--- end doPrePostChecker() ---\n\n");
 }
@@ -88,7 +89,7 @@ void doPrePostFloatDollarFixer()
 {
     printf("\n--- start doPrePostFloatDollarFixer() ---\n\n");
 
-    PrePostFloatDollarFixer hashes("### ", " ###");
+  /*  PrePostFloatDollarFixer hashes("### ", " ###");
     hashes.print(-777);
     hashes.print(350, '#');
     hashes.print(3.14f);
@@ -96,10 +97,10 @@ void doPrePostFloatDollarFixer()
     PrePostDollarFixer hashes2(hashes);
     hashes2.print(7.5);
     hashes2.print(100);
-
+*/
     printf("\n--- start doPrePostFloatDollarFixer() ---\n\n");
 }
-
+/*
 void runAsPrePostFixerRef(const PrePostFixer& pp)
 {
 printf("\n--- start runAsPrePostFixerRef() ---\n\n");
@@ -210,8 +211,9 @@ int main()
 
     doPrePostFixer();
      doPrePostDollarFixer();
-    /* doPrePostFloatDollarFixer();
-     doPrePostChecker();
+
+     doPrePostFloatDollarFixer();
+    /* doPrePostChecker();
 
      PrePostHashFixer hfix;
      runAsPrePostFixerRef(hfix);

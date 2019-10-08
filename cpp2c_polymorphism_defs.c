@@ -21,7 +21,7 @@
 
 /******virtual tables:******/
 /* virtual table of TextFormatter*/
-VirtualTablePointer g_virtual_tables_TextFormatter = {&__v_TextFormatter_DTOR_p__};
+extern VirtualTablePointer g_virtual_tables_TextFormatter = {&__v_TextFormatter_DTOR_p__};
 
 
 /* virtual table* of DefaultTextFormatter*/
