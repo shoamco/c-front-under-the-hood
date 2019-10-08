@@ -100,15 +100,24 @@ void doPrePostFloatDollarFixer()
 */
     printf("\n--- start doPrePostFloatDollarFixer() ---\n\n");
 }
-/*
-void runAsPrePostFixerRef(const PrePostFixer& pp)
+
+void runAsPrePostFixerRef(const PrePostFixer *pp)
 {
 printf("\n--- start runAsPrePostFixerRef() ---\n\n");
+/**
+ polymorphism:
+ PrePostHashFixer hfix;
+ PrePostFixer *pp=&hfix
 
-pp.print(123);
+ dynamic binding -using virtual table
+ */
+/*pp.print(123);*/
+    VirtualTablePointer virtualTablePointer=() pp->defaultTextFormatter.textFormatter.tablePointer;
+ /*   virtualTablePointer[3](pp,123);*/
 
 printf("\n--- end runAsPrePostFixerRef() ---\n\n");
 }
+/*
 
 void runAsPrePostDollarFixerRef(const PrePostDollarFixer& pp)
 {
@@ -207,26 +216,27 @@ void doFormatterDynamicArray()
 */
 int main()
 {
+    PrePostHashFixer hfix;
     printf("\n--- Start main() ---\n\n");
 
     doPrePostFixer();
      doPrePostDollarFixer();
 
      doPrePostFloatDollarFixer();
-    /* doPrePostChecker();
+   doPrePostChecker();
 
-     PrePostHashFixer hfix;
-     runAsPrePostFixerRef(hfix);
-     runAsPrePostDollarFixerRef(hfix);
-     runAsPrePostDollarFixerObj(hfix);
-     runAsPrePostHashFixerRef(hfix);
 
-     doMultiplier();
+    runAsPrePostFixerRef(&hfix);
+    /* runAsPrePostDollarFixerRef(hfix);
+    runAsPrePostDollarFixerObj(hfix);
+    runAsPrePostHashFixerRef(hfix);
 
-     doFormatterArray();
-     doFormatterPtrs();
-     doFormatterDynamicArray();
- */
+    doMultiplier();
+
+    doFormatterArray();
+    doFormatterPtrs();
+    doFormatterDynamicArray();
+*/
     printf("\n--- End main() ---\n\n");
 
     return 0;

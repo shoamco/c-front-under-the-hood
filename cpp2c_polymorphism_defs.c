@@ -289,7 +289,7 @@ char __v_getDefaultSymbol__PrePostHashFixer_p__(const PrePostHashFixer *const th
 }
 
 
-void __print_PrePostHashFixer_i_c__(const PrePostHashFixer *const this, int num, char symbol) {
+void __print_PrePostHashFixer_p_i_c__(const PrePostHashFixer *const this, int num, char symbol) {
 
     printf("%-60s | ", "[PrePostHashFixer::print(int, char)]");
     printf("-->\n");
@@ -299,8 +299,8 @@ void __print_PrePostHashFixer_i_c__(const PrePostHashFixer *const this, int num,
            this->prePostDollarFixer.prePostFixer.post);
 }
 
-void __print_PrePostHashFixer_i__(const PrePostHashFixer *const this, int num){
-    __print_PrePostHashFixer_i_c__(this,num,'#');
+void __print_PrePostHashFixer_p_i__(const PrePostHashFixer *const this, int num){
+    __print_PrePostHashFixer_p_i_c__(this,num,'#');
 }
 
 
