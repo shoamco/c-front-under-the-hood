@@ -68,9 +68,12 @@ void doPrePostDollarFixer() {
 }
 
 void doPrePostChecker() {
+    PrePostChecker check;
     printf("\n--- start doPrePostChecker() ---\n\n");
 
-    /*  PrePostChecker check;
+    /*  PrePostChecker check;*/
+    __PrePostChecker_CTOR_p__(&check);
+   /*
       check.printThisSymbolUsingFunc();
       check.printThisSymbolDirectly();
       check.printDollarSymbolByCastDirectly();
@@ -127,20 +130,10 @@ void runAsPrePostFixerRef(const PrePostFixer *pp) {
 
  dynamic binding -using virtual table
  */
-/*pp.print(123);*/
-    PrePostHashFixer hfix;
-    __PrePostHashFixer_CTOR_p__(&hfix);
-    __v_print__PrePostFixer_p_l__(&hfix, 123);
-    VirtualTablePointer virtualTablePointer1 = hfix.prePostDollarFixer.prePostFixer.defaultTextFormatter.textFormatter.tablePointer;
+/*pp.print(123)---->dynamic binding,not inline;*/
 
     VirtualTablePointer virtualTablePointer = pp->defaultTextFormatter.textFormatter.tablePointer;
-
-    ((void)(*(virtualTablePointer1+3)));
-    /* (*func_ptr[option])(argu1);*/
-    /*   ((void)*(virtualTablePointer+3))(&pp,123);*/
-
-       printf("virtualTablePointer %p\n",virtualTablePointer+3);
-       printf("virtualTablePointer %p\n",virtualTablePointer1+3);
+    (*(virtualTablePointer+3))(pp,123);
 
    printf("\n--- end runAsPrePostFixerRef() ---\n\n");
    }
