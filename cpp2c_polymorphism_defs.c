@@ -19,7 +19,10 @@
  */
 
 
+/*****globals*****/
+next_id = 0;
 /******virtual tables:******/
+
 /* virtual table of TextFormatter*/
 VirtualTablePointer g_virtual_table_TextFormatter = {__v_TextFormatter_DTOR_p__};
 
@@ -29,6 +32,7 @@ VirtualTablePointer g_virtual_table_DefaultTextFormatter = {__v_DefaultTextForma
                                                             __v_print__DefaultTextFormatter_p_cc__};
 
 /* virtual table of PrePostFixer*/
+
 VirtualTablePointer g_virtual_table_PrePostFixer = {__v_PrePostFixer_DTOR_p__,
                                                     __v_print__PrePostFixer_p_cc__,
                                                     __v_print__PrePostFixer_p_l_c__,
@@ -38,20 +42,28 @@ VirtualTablePointer g_virtual_table_PrePostFixer = {__v_PrePostFixer_DTOR_p__,
 /* virtual table of PrePostDollarFixer*/
 VirtualTablePointer g_virtual_table_PrePostDollarFixer = {__PrePostDollarFixer_DTOR_p__,
                                                           __v_print__PrePostFixer_p_cc__,
-                                                          __v_print__PrePostFixer_p_l_c__,
-                                                          __v_print__PrePostFixer_p_l__,
-                                                          __v_getDefaultSymbol__PrePostFixer_p__};
+                                                          __v_print__PrePostDollarFixer_p_l_c__,
+                                                          __v_print__PrePostDollarFixer_p_l__,
+                                                          __v_getDefaultSymbol__PrePostDollarFixer_p__};
 /* virtual table of PrePostHashFixer*/
 VirtualTablePointer g_virtual_table_PrePostHashFixer = {__PrePostDollarFixer_DTOR_p__,
                                                         __v_print__PrePostFixer_p_cc__,
-                                                        __v_print__PrePostDollarFixer_p_l_c__,
-                                                        __v_print__PrePostDollarFixer_p_l__,
-                                                        __v_getDefaultSymbol__PrePostDollarFixer_p__};
-next_id = 0;
+                                                        __v_print__PrePostHashFixer_p_l_c__,
+                                                        __v_print__PrePostHashFixer_p_l__,
+                                                        __v_getDefaultSymbol__PrePostHashFixer_p__};
+/*virtual table of PrePostFloatDollarFixer*/
+
+
+VirtualTablePointer g_virtual_table_PrePostFloatDollarFixer = {__PrePostFloatDollarFixer_DTOR_p__,
+                                                               __v_print__PrePostFixer_p_cc__,
+                                                               __v_print__PrePostDollarFixer_p_l_c__,
+                                                               __v_print__PrePostDollarFixer_p_l__,
+                                                               __v_getDefaultSymbol__PrePostFloatDollarFixer_p__};
+
 
 /*//// TextFormatter Defs ////////////*/
 
-void __v_TextFormatter_DTOR_p__(TextFormatter *this) {
+void __v_TextFormatter_DTOR_p__(TextFormatter *const this) {
 
 
 }
@@ -164,7 +176,7 @@ char __v_getDefaultSymbol__PrePostFixer_p__(const PrePostFixer *const this) {
 /****** PrePostDollarFixer Defs *******/
 
 
-void __PrePostDollarFixer_CTOR_p_cc_cc__(PrePostDollarFixer *this, const char *prefix, const char *postfix) {
+void __PrePostDollarFixer_CTOR_p_cc_cc__(PrePostDollarFixer *const this, const char *prefix, const char *postfix) {
 
     /*CTOR of bace class*/
     __PrePostFixer_CTOR_p_cc_cc__(&(this->prePostFixer), prefix, postfix);
@@ -240,47 +252,53 @@ void __print_PrePostDollarFixer_d__(const PrePostDollarFixer *const this, double
 /****** PrePostHashFixer *******/
 
 
-void __PrePostHashFixer_CTOR_p_i__(PrePostHashFixer *this, int prc) {
+void __PrePostHashFixer_CTOR_p_i__(PrePostHashFixer *const this, int prc) {
     /*CTOR bace class*/
-    __PrePostDollarFixer_CTOR_p_cc_cc__(&(this->prePostDollarFixer), "[[[[ ", " ]]]]");
+    __PrePostDollarFixer_CTOR_p_cc_cc__(&(this->prePostDollarFixer), "===> ", " <===");
     /*update the pointer of virtual table*/
     this->prePostDollarFixer.prePostFixer.defaultTextFormatter.textFormatter.tablePointer = g_virtual_table_PrePostHashFixer;
     /*MLI*/
     this->precision = prc;
     /*the  content of the CTOR*/
-    printf("--- PrePostChecker CTOR: \"%s\"...\"%s\"\n", this->prePostDollarFixer.prePostFixer.post,
-           this->prePostDollarFixer.prePostFixer.pre);
+    printf("--- PrePostHashFixer CTOR: \"%s\"...\"%s\", precision: %d\n", this->prePostDollarFixer.prePostFixer.post,
+           this->prePostDollarFixer.prePostFixer.pre, this->precision);
+    /*print(9999.9999);*/
+    printf("%-60s | ", "[PrePostHashFixer::print(double, char)]");
+    printf("%s[%c%.*f]%s\n", this->prePostDollarFixer.prePostFixer.pre, '#', this->precision, 9999.9999,
+           this->prePostDollarFixer.prePostFixer.post);
 }
 
 
-void __PrePostHashFixer_CTOR_p__(PrePostHashFixer *this) {
+void __PrePostHashFixer_CTOR_p__(PrePostHashFixer *const this) {
     __PrePostHashFixer_CTOR_p_i__(this, 4);
 }
 
 
-void __PrePostHashFixer_DTOR_p__(PrePostHashFixer *this) {
+void __PrePostHashFixer_DTOR_p__(PrePostHashFixer *const this) {
     /* first the  content of the DTOR*/
     printf("--- PrePostChecker CTOR: \"%s\"...\"%s\"\n", this->prePostDollarFixer.prePostFixer.pre,
            this->prePostDollarFixer.prePostFixer.post);
     /*update the pointer of virtual table to the bace class virtual table*/
     this->prePostDollarFixer.prePostFixer.defaultTextFormatter.textFormatter.tablePointer = g_virtual_table_PrePostDollarFixer;
     /*DTOR of bace class*/
-    __PrePostDollarFixer_DTOR_p__(this);
+    __PrePostDollarFixer_DTOR_p__(&(this->prePostDollarFixer));
 }
 
 
 void __v_print__PrePostHashFixer_p_l_c__(const PrePostHashFixer *const this, long num, char symbol)/*override*/{
     printf("%-60s | ", "[PrePostHashFixer::print(long, char)]");
     printf("-->\n");
-   /* print(double(num), symbol);*/
+    /* print(double(num), symbol);*/
     printf("%-60s | ", "[PrePostHashFixer::print(double, char)]");
-    printf("%s[%c%.*f]%s\n", this->prePostDollarFixer.prePostFixer.pre, symbol, this->precision, num,
+    printf("%s[%c%.*f]%s\n", this->prePostDollarFixer.prePostFixer.pre, symbol, this->precision, (double) num,
            this->prePostDollarFixer.prePostFixer.post);
+
+
 }
 
 
 void __v_print__PrePostHashFixer_p_l__(const PrePostHashFixer *const this, long num)/*override*/{
-    __v_print__PrePostHashFixer_p_l_c__(this,num,'#');
+    __v_print__PrePostHashFixer_p_l_c__(this, num, '#');
 }
 
 
@@ -299,8 +317,56 @@ void __print_PrePostHashFixer_p_i_c__(const PrePostHashFixer *const this, int nu
            this->prePostDollarFixer.prePostFixer.post);
 }
 
-void __print_PrePostHashFixer_p_i__(const PrePostHashFixer *const this, int num){
-    __print_PrePostHashFixer_p_i_c__(this,num,'#');
+void __print_PrePostHashFixer_p_i__(const PrePostHashFixer *const this, int num) {
+
+    __print_PrePostHashFixer_p_i_c__(this, num, '#');
+
 }
 
 
+/****** PrePostFloatDollarFixer *******/
+
+void __PrePostFloatDollarFixer_CTOR_p_cc_cc__(PrePostFloatDollarFixer *const this, const char *prefix, const char *postfix) {
+
+    /*CTOR of bace class*/
+    __PrePostDollarFixer_CTOR_p_cc_cc__(&(this->prePostDollarFixer), prefix, postfix);
+
+    /*update the pointer of virtual table*/
+    this->prePostDollarFixer.prePostFixer.defaultTextFormatter.textFormatter.tablePointer = g_virtual_table_PrePostFloatDollarFixer;
+
+    /* the  content of the CTOR */
+    printf("--- PrePostFloatDollarFixer CTOR: \"%s\"...\"%s\"\n", this->prePostDollarFixer.prePostFixer.pre,
+           this->prePostDollarFixer.prePostFixer.post);
+}
+
+
+void __PrePostFloatDollarFixer_DTOR_p__(PrePostFloatDollarFixer *const this){
+
+    /*the  content of the DTOR*/
+    printf("--- PrePostFloatDollarFixer DTOR: \"%s\"...\"%s\"\n",this->prePostDollarFixer.prePostFixer.pre,
+           this->prePostDollarFixer.prePostFixer.post);
+
+    /* update the pointer of virtual table to the bace class virtual table*/
+    this->prePostDollarFixer.prePostFixer.defaultTextFormatter.textFormatter.tablePointer=g_virtual_table_PrePostDollarFixer;
+
+    /* DTOR of bace class*/
+    __PrePostDollarFixer_DTOR_p__(&(this->prePostDollarFixer));
+}
+char __v_getDefaultSymbol__PrePostFloatDollarFixer_p__(const PrePostFloatDollarFixer *const this)
+{
+    return '@';
+}
+void __print_PrePostFloatDollarFixer_f__(const PrePostFloatDollarFixer *const this,float num){
+
+    printf("%-60s | ", "[PrePostFloatDollarFixer::print(float)]");
+    printf("-->\n");
+
+   /* print(num, DEFAULT_SYMBOL);*/
+    __print_PrePostFloatDollarFixer_f_c__(this,num,'@');
+}
+void __print_PrePostFloatDollarFixer_f_c__(const PrePostFloatDollarFixer *const this,float num, char symbol){
+
+    printf("%-60s | ", "[PrePostFloatDollarFixer::print(float, char)]");
+
+    printf("%s%c%.2f%s\n",this->prePostDollarFixer.prePostFixer.pre, symbol, num, this->prePostDollarFixer.prePostFixer.post);
+}

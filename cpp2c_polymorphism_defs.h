@@ -105,7 +105,7 @@ typedef struct PrePostFixer {
 
 } PrePostFixer;
 
-/*PrePostFixer function*/
+/*********method of PrePostFixer**********/
 void __PrePostFixer_CTOR_p_cc_cc__(PrePostFixer *const
 
 this,
@@ -152,7 +152,9 @@ typedef struct PrePostDollarFixer {
 
 } PrePostDollarFixer;
 
-void __PrePostDollarFixer_CTOR_p_cc_cc__(PrePostDollarFixer *this,const char *prefix,const char *postfix);
+
+/*********method of PrePostDollarFixer**********/
+void __PrePostDollarFixer_CTOR_p_cc_cc__(PrePostDollarFixer *const this,const char *prefix,const char *postfix);
 void __PrePostDollarFixer_COPY_CTOR_p_p__(PrePostDollarFixer *const this ,const PrePostDollarFixer *other);
 void __PrePostDollarFixer_DTOR_p__(PrePostDollarFixer *const this);
 
@@ -188,10 +190,11 @@ typedef struct PrePostHashFixer{
 
     int precision;
 }PrePostHashFixer;
-/*method of PrePostHashFixer*/
-void __PrePostHashFixer_CTOR_p__(PrePostHashFixer *this);
-void __PrePostHashFixer_CTOR_p_i__(PrePostHashFixer *this, int prc);
-void __PrePostHashFixer_DTOR_p__(PrePostHashFixer *this);
+
+/******method of PrePostHashFixer*******/
+void __PrePostHashFixer_CTOR_p__(PrePostHashFixer *const this);
+void __PrePostHashFixer_CTOR_p_i__(PrePostHashFixer *const this, int prc);
+void __PrePostHashFixer_DTOR_p__(PrePostHashFixer *const this);
 
 
 void __v_print__PrePostHashFixer_p_l_c__(const PrePostHashFixer *const this,long num,char symbol);/*override*/
@@ -205,7 +208,38 @@ void __print_PrePostHashFixer_p_i__(const PrePostHashFixer *const this,int num);
 
 
 
+/****************PrePostFloatDollarFixer ***************
+ *  PrePostFloatDollarFixer is class polymorphism that heiress from:
+           ----> PrePostDollarFixer---->PrePostFixer---> DefaultTextFormatter  ---> TextFormatter
+
+  the class overrides  (virtual method):
+            getDefaultSymbol()
+
+*************************************************************/
 
 
+typedef struct PrePostFloatDollarFixer
+{
+    /* heiress from  PrePostDollarFixer*/
+    PrePostDollarFixer prePostDollarFixer;
+  /*  static const char DEFAULT_SYMBOL = '@';----> literal*/
+/*
+public:
+    PrePostFloatDollarFixer(const char* prefix, const char* postfix);
+    ~PrePostFloatDollarFixer();
+    void print(float num) const;
+    void print(float num, char symbol) const;
+    char getDefaultSymbol() const;
+    */
+}PrePostFloatDollarFixer;
+
+/******method of PrePostFloatDollarFixer*******/
+
+
+void __PrePostFloatDollarFixer_CTOR_p_cc_cc__(PrePostFloatDollarFixer *const this, const char* prefix, const char* postfix);
+void __PrePostFloatDollarFixer_DTOR_p__(PrePostFloatDollarFixer *const this);
+void __print_PrePostFloatDollarFixer_f__(const PrePostFloatDollarFixer *const this,float num);
+void __print_PrePostFloatDollarFixer_f_c__(const PrePostFloatDollarFixer *const this,float num, char symbol);
+char __v_getDefaultSymbol__PrePostFloatDollarFixer_p__(const PrePostFloatDollarFixer *const this);/*override*/
 
 #endif /*CPP_UTH_ENCAPSULATION_SHOAMCO_CPP2C_POLYMORPHISM_DEFS_H*/
