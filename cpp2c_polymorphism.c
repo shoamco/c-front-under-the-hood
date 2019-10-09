@@ -89,22 +89,33 @@ void doPrePostFloatDollarFixer() {
 /*PrePostFloatDollarFixer hashes("### ", " ###");*/
     __PrePostFloatDollarFixer_CTOR_p_cc_cc__(&hashes,"### ", " ###");
 
-    /*hashes.print(-777);*/
+    /*hashes.print(-777);---> not inline,static binding*/
     __print_PrePostFloatDollarFixer_f__(&hashes,-777);
 
-/*   hashes.print(350, '#');*/
+/*   hashes.print(350, '#');---> not inline,static binding*/
     __print_PrePostFloatDollarFixer_f_c__(&hashes,350,'#');
 
-   /*   hashes.print(3.14f);*/
+
+   /*   hashes.print(3.14f);---> not inline,static binding*/
     __print_PrePostFloatDollarFixer_f__(&hashes,3.14f);
+
+
     /* PrePostDollarFixer hashes2(hashes);--->copy CTOR*/
+    __PrePostFloatDollarFixer_COPY_CTOR_p_p__(&hashes2,&hashes);
 
-    /*
 
-      hashes2.print(7.5);
-      hashes2.print(100);
-  */
-    printf("\n--- start doPrePostFloatDollarFixer() ---\n\n");
+    /* hashes2.print(7.5);---> heiress from PrePostDollarFixer, inline,static binding*/
+    printf("%-60s | ", "[PrePostDollarFixer::print(double, char)]");
+    printf("%s%c%f%s\n", hashes2.prePostFixer.pre, '$', 7.5, hashes2.prePostFixer.post);
+
+
+    /*hashes2.print(100);--->heiress from PrePostDollarFixer, not inline,static binding*/
+    __print_PrePostDollarFixer_i__(&(hashes2.prePostFixer),100);
+
+
+    printf("\n--- end doPrePostFloatDollarFixer() ---\n\n");
+    __PrePostFloatDollarFixer_DTOR_p__(&hashes);
+    __PrePostFloatDollarFixer_DTOR_p__(&hashes2);
 }
 
 void runAsPrePostFixerRef(const PrePostFixer *pp) {
