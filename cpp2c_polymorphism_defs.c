@@ -51,17 +51,21 @@ VirtualTablePointer g_virtual_table_PrePostHashFixer = {__PrePostDollarFixer_DTO
                                                         __v_print__PrePostHashFixer_p_l_c__,
                                                         __v_print__PrePostHashFixer_p_l__,
                                                         __v_getDefaultSymbol__PrePostHashFixer_p__};
+
 /*virtual table of PrePostFloatDollarFixer*/
-
-
 VirtualTablePointer g_virtual_table_PrePostFloatDollarFixer = {__PrePostFloatDollarFixer_DTOR_p__,
                                                                __v_print__PrePostFixer_p_cc__,
                                                                __v_print__PrePostDollarFixer_p_l_c__,
                                                                __v_print__PrePostDollarFixer_p_l__,
                                                                __v_getDefaultSymbol__PrePostFloatDollarFixer_p__};
 
-
-/*//// TextFormatter Defs ////////////*/
+/*virtual table of PrePostFloatDollarFixer*/
+VirtualTablePointer g_virtual_table_PrePostChecker = {__PrePostChecker_DTOR_p__,
+                                                               __v_print__PrePostFixer_p_cc__,
+                                                               __v_print__PrePostDollarFixer_p_l_c__,
+                                                               __v_print__PrePostDollarFixer_p_l__,
+                                                               __v_getDefaultSymbol__PrePostFloatDollarFixer_p__};
+/***************8TextFormatter Defs *************/
 
 void __v_TextFormatter_DTOR_p__(TextFormatter *const this) {
 
@@ -369,4 +373,34 @@ void __print_PrePostFloatDollarFixer_f_c__(const PrePostFloatDollarFixer *const 
     printf("%-60s | ", "[PrePostFloatDollarFixer::print(float, char)]");
 
     printf("%s%c%.2f%s\n",this->prePostDollarFixer.prePostFixer.pre, symbol, num, this->prePostDollarFixer.prePostFixer.post);
+}
+
+
+/****** PrePostChecker*******/
+
+
+void __PrePostChecker_CTOR_p__(PrePostChecker *const this){
+
+    /*CTOR of bace class*/
+
+    __PrePostFloatDollarFixer_CTOR_p_cc_cc__(&(this->prePostFloatDollarFixer),"[[[[ ", " ]]]]");
+    /*update the pointer of virtual table*/
+    this->prePostFloatDollarFixer.prePostDollarFixer.prePostFixer.defaultTextFormatter.textFormatter.tablePointer =g_virtual_table_PrePostChecker;
+
+    /* the  content of the CTOR */
+    printf("--- PrePostChecker CTOR: \"%s\"...\"%s\"\n", this->prePostFloatDollarFixer.prePostDollarFixer.prePostFixer.pre,
+           this->prePostFloatDollarFixer.prePostDollarFixer.prePostFixer.post);
+}
+void __PrePostChecker_DTOR_p__(PrePostChecker *const this){
+
+    /*the  content of the DTOR*/
+    printf("--- PrePostChecker CTOR: \"%s\"...\"%s\"\n", this->prePostFloatDollarFixer.prePostDollarFixer.prePostFixer.pre,
+           this->prePostFloatDollarFixer.prePostDollarFixer.prePostFixer.post);
+
+    /* update the pointer of virtual table to the bace class virtual table*/
+    this->prePostFloatDollarFixer.prePostDollarFixer.prePostFixer.defaultTextFormatter.textFormatter.tablePointer=g_virtual_table_PrePostFloatDollarFixer;
+
+    /* DTOR of bace class*/
+    __PrePostFloatDollarFixer_DTOR_p__(&(this->prePostFloatDollarFixer));
+
 }

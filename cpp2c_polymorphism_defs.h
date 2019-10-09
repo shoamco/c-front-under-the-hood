@@ -242,4 +242,37 @@ void __print_PrePostFloatDollarFixer_f__(const PrePostFloatDollarFixer *const th
 void __print_PrePostFloatDollarFixer_f_c__(const PrePostFloatDollarFixer *const this,float num, char symbol);
 char __v_getDefaultSymbol__PrePostFloatDollarFixer_p__(const PrePostFloatDollarFixer *const this);/*override*/
 
+
+/****************PrePostChecker ***************
+ *  PrePostChecker is class polymorphism that heiress from:
+          ---->PrePostFloatDollarFixer ----> PrePostDollarFixer---->PrePostFixer---> DefaultTextFormatter  ---> TextFormatter
+
+  the class overrides  (virtual method):
+
+
+*************************************************************/
+
+typedef struct PrePostChecker
+{
+    /* heiress from  PrePostFloatDollarFixer*/
+    PrePostFloatDollarFixer prePostFloatDollarFixer;
+    /*
+public:
+    PrePostChecker();
+    ~PrePostChecker();
+
+    void printThisSymbolUsingFunc() const;
+    void printThisSymbolDirectly() const;
+    void printDollarSymbolByCastUsingFunc() const;
+    void printDollarSymbolByScopeUsingFunc() const;
+    void printDollarSymbolByCastDirectly() const;
+    void printDollarSymbolByScopeDirectly() const;
+     */
+}PrePostChecker;
+
+/******method of PrePostChecker*******/
+
+
+void __PrePostChecker_CTOR_p__(PrePostChecker *const this);
+void __PrePostChecker_DTOR_p__(PrePostChecker *const this);
 #endif /*CPP_UTH_ENCAPSULATION_SHOAMCO_CPP2C_POLYMORPHISM_DEFS_H*/
