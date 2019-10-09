@@ -73,16 +73,27 @@ void doPrePostChecker() {
 
     /*  PrePostChecker check;*/
     __PrePostChecker_CTOR_p__(&check);
-   /*
-      check.printThisSymbolUsingFunc();
-      check.printThisSymbolDirectly();
-      check.printDollarSymbolByCastDirectly();
-      check.printDollarSymbolByScopeDirectly();
-      check.printDollarSymbolByCastUsingFunc();
-      check.printDollarSymbolByScopeUsingFunc();
-      */
+
+    /* check.printThisSymbolUsingFunc();-->not inline, static binding */
+    __PrePostChecker_printThisSymbolUsingFunc_p__(&check);
+
+    /*      check.printThisSymbolDirectly();*/
+    __PrePostChecker_printThisSymbolDirectly_p__(&check);
+
+  /* check.printDollarSymbolByCastDirectly();*/
+    __PrePostChecker_printDollarSymbolByCastUsingFunc_p__(&check);
+
+/* check.printDollarSymbolByScopeDirectly();*/
+    __PrePostChecker_printDollarSymbolByScopeUsingFunc_p__(&check);
+
+      /*check.printDollarSymbolByCastUsingFunc();*/
+    __PrePostChecker_printDollarSymbolByCastDirectly_p__(&check);
+
+     /* check.printDollarSymbolByScopeUsingFunc();*/
+    __PrePostChecker_printDollarSymbolByScopeDirectly_p__(&check);
 
     printf("\n--- end doPrePostChecker() ---\n\n");
+    __PrePostChecker_DTOR_p__(&check);
 }
 
 void doPrePostFloatDollarFixer() {
@@ -249,7 +260,7 @@ void doFormatterDynamicArray()
         doPrePostChecker();
 
         __PrePostHashFixer_CTOR_p__(&hfix);
-     runAsPrePostFixerRef(&hfix);
+    /* runAsPrePostFixerRef(&hfix);
     /*  runAsPrePostDollarFixerRef(&hfix);*/
        /* runAsPrePostDollarFixerObj(&hfix);
         runAsPrePostHashFixerRef(&hfix);

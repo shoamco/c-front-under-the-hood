@@ -432,3 +432,38 @@ void __PrePostChecker_DTOR_p__(PrePostChecker *const this){
     __PrePostFloatDollarFixer_DTOR_p__(&(this->prePostFloatDollarFixer));
 
 }
+void __PrePostChecker_printThisSymbolUsingFunc_p__(const PrePostChecker *const this ){
+
+    printf("%-60s | ", "[PrePostChecker::printThisSymbolUsingFunc()]");
+    printf("Default symbol is %c\n",  '@');
+
+}
+void __PrePostChecker_printThisSymbolDirectly_p__(const PrePostChecker *const this ){
+    printf("%-60s | ","[PrePostChecker::printThisSymbolDirectly()]");
+    printf("Default symbol is %c\n", '@');
+
+}
+void __PrePostChecker_printDollarSymbolByCastUsingFunc_p__(const PrePostChecker *const this ){
+    printf("%-60s | ","[PrePostChecker::printDollarSymbolByCastUsingFunc()]");
+
+    /*printf("Default symbol is %c\n", ((PrePostDollarFixer*)(this))->getDefaultSymbol());*/
+    printf("Default symbol is %c\n", '$');/*static binding*/
+}
+void __PrePostChecker_printDollarSymbolByScopeUsingFunc_p__(const PrePostChecker *const this ){
+    printf("%-60s | ","[PrePostChecker::printDollarSymbolByScopeUsingFunc()]");
+
+   /* printf("Default symbol is %c\n", this->PrePostDollarFixer::getDefaultSymbol());*/
+    printf("Default symbol is %c\n",'$');/*static binding*/
+}
+void __PrePostChecker_printDollarSymbolByCastDirectly_p__(const PrePostChecker *const this ){
+    printf("%-60s | ","[PrePostChecker::printDollarSymbolByCastDirectly()]");
+
+   /* printf("Default symbol is %c\n", ((PrePostDollarFixer*)(this))->DEFAULT_SYMBOL);*/
+    printf("Default symbol is %c\n", '$');/*static binding*/
+}
+void __PrePostChecker_printDollarSymbolByScopeDirectly_p__(const PrePostChecker *const this ){
+    printf("%-60s | ","[PrePostChecker::printDollarSymbolByCastDirectly()]");
+
+   /* printf("Default symbol is %c\n", ((PrePostDollarFixer*)(this))->DEFAULT_SYMBOL);*/
+    printf("Default symbol is %c\n", '$');/*static binding*/
+}

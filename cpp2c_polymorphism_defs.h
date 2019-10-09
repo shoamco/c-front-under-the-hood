@@ -299,4 +299,11 @@ void __PrePostChecker_CTOR_p__(PrePostChecker *const this);
 void __PrePostChecker_DTOR_p__(PrePostChecker *const this);
 void __PrePostChecker_COPY_CTOR_p_p__(PrePostChecker *const this ,const PrePostChecker *other);
 
+void __PrePostChecker_printThisSymbolUsingFunc_p__(const PrePostChecker *const this );
+void __PrePostChecker_printThisSymbolDirectly_p__(const PrePostChecker *const this );
+void __PrePostChecker_printDollarSymbolByCastUsingFunc_p__(const PrePostChecker *const this );
+void __PrePostChecker_printDollarSymbolByScopeUsingFunc_p__(const PrePostChecker *const this );
+void __PrePostChecker_printDollarSymbolByCastDirectly_p__(const PrePostChecker *const this );
+void __PrePostChecker_printDollarSymbolByScopeDirectly_p__(const PrePostChecker *const this );
+
 #endif /*CPP_UTH_ENCAPSULATION_SHOAMCO_CPP2C_POLYMORPHISM_DEFS_H*/
