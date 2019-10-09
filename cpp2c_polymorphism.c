@@ -83,14 +83,24 @@ void doPrePostChecker() {
 }
 
 void doPrePostFloatDollarFixer() {
+    PrePostFloatDollarFixer hashes;
+    PrePostDollarFixer hashes2;
     printf("\n--- start doPrePostFloatDollarFixer() ---\n\n");
+/*PrePostFloatDollarFixer hashes("### ", " ###");*/
+    __PrePostFloatDollarFixer_CTOR_p_cc_cc__(&hashes,"### ", " ###");
 
-    /*  PrePostFloatDollarFixer hashes("### ", " ###");
-      hashes.print(-777);
-      hashes.print(350, '#');
-      hashes.print(3.14f);
+    /*hashes.print(-777);*/
+    __print_PrePostFloatDollarFixer_f__(&hashes,-777);
 
-      PrePostDollarFixer hashes2(hashes);
+/*   hashes.print(350, '#');*/
+    __print_PrePostFloatDollarFixer_f_c__(&hashes,350,'#');
+
+   /*   hashes.print(3.14f);*/
+    __print_PrePostFloatDollarFixer_f__(&hashes,3.14f);
+    /* PrePostDollarFixer hashes2(hashes);--->copy CTOR*/
+
+    /*
+
       hashes2.print(7.5);
       hashes2.print(100);
   */

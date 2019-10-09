@@ -34,6 +34,7 @@ typedef struct TextFormatter
 void __v_TextFormatter_DTOR_p__(TextFormatter *const
 
 this);
+void __TextFormatter_copy_CTOR_p__(TextFormatter *const this,const TextFormatter const *other);
 
 /****************  DefaultTextFormatter  *************************************
 
@@ -112,7 +113,7 @@ this,
 const char *prefix,
 const char *postfix
 );
-
+void __PrePostFixer_copy_CTOR_p__(PrePostFixer *const this, const PrePostFixer const *other);
 void __v_PrePostFixer_DTOR_p__(PrePostFixer *const
 
 this);
@@ -194,6 +195,8 @@ typedef struct PrePostHashFixer{
 /******method of PrePostHashFixer*******/
 void __PrePostHashFixer_CTOR_p__(PrePostHashFixer *const this);
 void __PrePostHashFixer_CTOR_p_i__(PrePostHashFixer *const this, int prc);
+void __PrePostHashFixer_COPY_CTOR_p_p__(PrePostHashFixer *const this ,const PrePostHashFixer *other);
+
 void __PrePostHashFixer_DTOR_p__(PrePostHashFixer *const this);
 
 
@@ -237,6 +240,8 @@ public:
 
 
 void __PrePostFloatDollarFixer_CTOR_p_cc_cc__(PrePostFloatDollarFixer *const this, const char* prefix, const char* postfix);
+void __PrePostFloatDollarFixer_COPY_CTOR_p_p__(PrePostFloatDollarFixer *const this ,const PrePostFloatDollarFixer *other);
+
 void __PrePostFloatDollarFixer_DTOR_p__(PrePostFloatDollarFixer *const this);
 void __print_PrePostFloatDollarFixer_f__(const PrePostFloatDollarFixer *const this,float num);
 void __print_PrePostFloatDollarFixer_f_c__(const PrePostFloatDollarFixer *const this,float num, char symbol);
@@ -275,4 +280,6 @@ public:
 
 void __PrePostChecker_CTOR_p__(PrePostChecker *const this);
 void __PrePostChecker_DTOR_p__(PrePostChecker *const this);
+void __PrePostChecker_COPY_CTOR_p_p__(PrePostChecker *const this ,const PrePostChecker *other);
+
 #endif /*CPP_UTH_ENCAPSULATION_SHOAMCO_CPP2C_POLYMORPHISM_DEFS_H*/

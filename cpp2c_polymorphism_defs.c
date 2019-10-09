@@ -65,9 +65,15 @@ VirtualTablePointer g_virtual_table_PrePostChecker = {__PrePostChecker_DTOR_p__,
                                                                __v_print__PrePostDollarFixer_p_l_c__,
                                                                __v_print__PrePostDollarFixer_p_l__,
                                                                __v_getDefaultSymbol__PrePostFloatDollarFixer_p__};
-/***************8TextFormatter Defs *************/
+/***************TextFormatter Defs *************/
 
 void __v_TextFormatter_DTOR_p__(TextFormatter *const this) {
+
+
+}
+void __TextFormatter_copy_CTOR_p__(TextFormatter *const this,const TextFormatter const *other){
+
+        this->tablePointer= other->tablePointer;
 
 
 }
@@ -88,9 +94,11 @@ void __DefaultTextFormatter_CTOR_p__(DefaultTextFormatter *const this) {
 }
 
 void __DefaultTextFormatter_copy_CTOR_p__(DefaultTextFormatter *const this, const DefaultTextFormatter const *other) {
-    this->textFormatter.tablePointer = other->textFormatter.tablePointer;
-    this->id = other->id;
-    printf("--- DefaultTextFormatter Copy CTOR, from id: %d\n########## C %d ##########\n", other->id, this->id);
+
+       __TextFormatter_copy_CTOR_p__(&(this->textFormatter),&(other->textFormatter));
+        this->id = other->id;
+        printf("--- DefaultTextFormatter Copy CTOR, from id: %d\n########## C %d ##########\n", other->id, this->id);
+
 }
 
 
@@ -120,7 +128,7 @@ void __v_DefaultTextFormatter_DTOR_p__(DefaultTextFormatter *const this) {
 }
 
 
-/*//// PrePostFixer Defs ////////////*/
+/*****************PrePostFixer Defs *************/
 
 void __PrePostFixer_CTOR_p_cc_cc__(PrePostFixer *const this, const char *prefix, const char *postfix) {
     /*first call bace CTOR*/
@@ -134,7 +142,13 @@ void __PrePostFixer_CTOR_p_cc_cc__(PrePostFixer *const this, const char *prefix,
     /*the  content of the CTOR*/
     printf("--- PrePostFixer CTOR: \"%s\"...\"%s\"\n", this->pre, this->post);
 }
+void __PrePostFixer_copy_CTOR_p__(PrePostFixer *const this, const PrePostFixer const *other){
 
+        __DefaultTextFormatter_copy_CTOR_p__(&(this->defaultTextFormatter), &(other->defaultTextFormatter));
+        this->post = other->post;
+        this->pre = other->pre;
+
+}
 void __v_PrePostFixer_DTOR_p__(PrePostFixer *const this) {
     /*the  content of the DTOR*/
     printf("--- PrePostFixer DTOR: \"%s\"...\"%s\"\n", this->pre, this->post);
@@ -193,10 +207,9 @@ void __PrePostDollarFixer_CTOR_p_cc_cc__(PrePostDollarFixer *const this, const c
 }
 
 void __PrePostDollarFixer_COPY_CTOR_p_p__(PrePostDollarFixer *const this, const PrePostDollarFixer *other) {
-    this->prePostFixer.post = other->prePostFixer.post;
-    this->prePostFixer.pre = other->prePostFixer.pre;
-    this->prePostFixer.defaultTextFormatter.textFormatter.tablePointer =
-            other->prePostFixer.defaultTextFormatter.textFormatter.tablePointer;
+
+     __PrePostFixer_copy_CTOR_p__(&(this->prePostFixer),&(other->prePostFixer));
+
     printf("--- PrePostDollarFixer Copy CTOR: \"%s\"...\"%s\"\n", this->prePostFixer.pre,
            this->prePostFixer.post);
 
@@ -271,7 +284,13 @@ void __PrePostHashFixer_CTOR_p_i__(PrePostHashFixer *const this, int prc) {
     printf("%s[%c%.*f]%s\n", this->prePostDollarFixer.prePostFixer.pre, '#', this->precision, 9999.9999,
            this->prePostDollarFixer.prePostFixer.post);
 }
+void __PrePostHashFixer_COPY_CTOR_p_p__(PrePostHashFixer *const this ,const PrePostHashFixer *other){
 
+        __PrePostDollarFixer_COPY_CTOR_p_p__(&(this->prePostDollarFixer),&(other->prePostDollarFixer));
+        this->precision=other->precision;
+
+
+}
 
 void __PrePostHashFixer_CTOR_p__(PrePostHashFixer *const this) {
     __PrePostHashFixer_CTOR_p_i__(this, 4);
@@ -342,7 +361,12 @@ void __PrePostFloatDollarFixer_CTOR_p_cc_cc__(PrePostFloatDollarFixer *const thi
     printf("--- PrePostFloatDollarFixer CTOR: \"%s\"...\"%s\"\n", this->prePostDollarFixer.prePostFixer.pre,
            this->prePostDollarFixer.prePostFixer.post);
 }
+void __PrePostFloatDollarFixer_COPY_CTOR_p_p__(PrePostFloatDollarFixer *const this ,const PrePostFloatDollarFixer *other){
 
+        __PrePostDollarFixer_COPY_CTOR_p_p__(&(this->prePostDollarFixer), &(other->prePostDollarFixer));
+
+
+}
 
 void __PrePostFloatDollarFixer_DTOR_p__(PrePostFloatDollarFixer *const this){
 
@@ -390,6 +414,10 @@ void __PrePostChecker_CTOR_p__(PrePostChecker *const this){
     /* the  content of the CTOR */
     printf("--- PrePostChecker CTOR: \"%s\"...\"%s\"\n", this->prePostFloatDollarFixer.prePostDollarFixer.prePostFixer.pre,
            this->prePostFloatDollarFixer.prePostDollarFixer.prePostFixer.post);
+}
+void __PrePostChecker_COPY_CTOR_p_p__(PrePostChecker *const this ,const PrePostChecker *other){
+    __PrePostFloatDollarFixer_COPY_CTOR_p_p__(&(this->prePostFloatDollarFixer),&(other->prePostFloatDollarFixer));
+
 }
 void __PrePostChecker_DTOR_p__(PrePostChecker *const this){
 
