@@ -278,18 +278,7 @@ typedef struct PrePostChecker
 {
     /* heiress from  PrePostFloatDollarFixer*/
     PrePostFloatDollarFixer prePostFloatDollarFixer;
-    /*
-public:
-    PrePostChecker();
-    ~PrePostChecker();
 
-    void printThisSymbolUsingFunc() const;
-    void printThisSymbolDirectly() const;
-    void printDollarSymbolByCastUsingFunc() const;
-    void printDollarSymbolByScopeUsingFunc() const;
-    void printDollarSymbolByCastDirectly() const;
-    void printDollarSymbolByScopeDirectly() const;
-     */
 }PrePostChecker;
 
 /******method of PrePostChecker*******/
