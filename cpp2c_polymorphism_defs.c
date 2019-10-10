@@ -24,43 +24,43 @@ next_id = 0;
 /******virtual tables:******/
 
 /* virtual table of TextFormatter*/
-VirtualTablePointer g_virtual_table_TextFormatter = {__v_TextFormatter_DTOR_p__};
+vptr g_virtual_table_TextFormatter[1] = {__v_TextFormatter_DTOR_p__};
 
 
 /* virtual table* of DefaultTextFormatter*/
-VirtualTablePointer g_virtual_table_DefaultTextFormatter = {__v_DefaultTextFormatter_DTOR_p__,
+vptr g_virtual_table_DefaultTextFormatter[2] = {__v_DefaultTextFormatter_DTOR_p__,
                                                             __v_print__DefaultTextFormatter_p_cc__};
 
 /* virtual table of PrePostFixer*/
 
-VirtualTablePointer g_virtual_table_PrePostFixer = {__v_PrePostFixer_DTOR_p__,
+vptr g_virtual_table_PrePostFixer[5] = {__v_PrePostFixer_DTOR_p__,
                                                     __v_print__PrePostFixer_p_cc__,
                                                     __v_print__PrePostFixer_p_l_c__,
                                                     __v_print__PrePostFixer_p_l__,
                                                     __v_getDefaultSymbol__PrePostFixer_p__};
 
 /* virtual table of PrePostDollarFixer*/
-VirtualTablePointer g_virtual_table_PrePostDollarFixer = {__PrePostDollarFixer_DTOR_p__,
+vptr g_virtual_table_PrePostDollarFixer[5] = {__PrePostDollarFixer_DTOR_p__,
                                                           __v_print__PrePostFixer_p_cc__,
                                                           __v_print__PrePostDollarFixer_p_l_c__,
                                                           __v_print__PrePostDollarFixer_p_l__,
                                                           __v_getDefaultSymbol__PrePostDollarFixer_p__};
 /* virtual table of PrePostHashFixer*/
-VirtualTablePointer g_virtual_table_PrePostHashFixer = {__PrePostDollarFixer_DTOR_p__,
+vptr g_virtual_table_PrePostHashFixer[5] = {__PrePostDollarFixer_DTOR_p__,
                                                         __v_print__PrePostFixer_p_cc__,
                                                         __v_print__PrePostHashFixer_p_l_c__,
                                                         __v_print__PrePostHashFixer_p_l__,
                                                         __v_getDefaultSymbol__PrePostHashFixer_p__};
 
 /*virtual table of PrePostFloatDollarFixer*/
-VirtualTablePointer g_virtual_table_PrePostFloatDollarFixer = {__PrePostFloatDollarFixer_DTOR_p__,
+vptr g_virtual_table_PrePostFloatDollarFixer[5] = {__PrePostFloatDollarFixer_DTOR_p__,
                                                                __v_print__PrePostFixer_p_cc__,
                                                                __v_print__PrePostDollarFixer_p_l_c__,
                                                                __v_print__PrePostDollarFixer_p_l__,
                                                                __v_getDefaultSymbol__PrePostFloatDollarFixer_p__};
 
 /*virtual table of PrePostFloatDollarFixer*/
-VirtualTablePointer g_virtual_table_PrePostChecker = {__PrePostChecker_DTOR_p__,
+vptr g_virtual_table_PrePostChecker[5] = {__PrePostChecker_DTOR_p__,
                                                                __v_print__PrePostFixer_p_cc__,
                                                                __v_print__PrePostDollarFixer_p_l_c__,
                                                                __v_print__PrePostDollarFixer_p_l__,

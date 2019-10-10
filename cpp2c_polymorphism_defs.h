@@ -12,29 +12,10 @@ typedef enum {
     true = 1
 } Bool;
 
-typedef void *(vptr)(void *, ...);/*vptr is type of pointer to function */
+typedef void (*vptr)(void *, ...);/*vptr is type of pointer to function */
 typedef vptr *VirtualTablePointer;/*VirtualTablePointer is type of pointer to Virtual Table */
 
-/* virtual table of TextFormatter*/
-extern VirtualTablePointer g_virtual_table_TextFormatter;
 
-/* virtual table* of DefaultTextFormatter*/
-extern VirtualTablePointer g_virtual_table_DefaultTextFormatter ;
-
-/* virtual table of PrePostFixer*/
-
-extern VirtualTablePointer g_virtual_table_PrePostFixer ;
-
-/* virtual table of PrePostDollarFixer*/
-extern VirtualTablePointer g_virtual_table_PrePostDollarFixer ;
-/* virtual table of PrePostHashFixer*/
-extern VirtualTablePointer g_virtual_table_PrePostHashFixer ;
-
-/*virtual table of PrePostFloatDollarFixer*/
-extern VirtualTablePointer g_virtual_table_PrePostFloatDollarFixer ;
-
-/*virtual table of PrePostFloatDollarFixer*/
-extern VirtualTablePointer g_virtual_table_PrePostChecker;
 /****************  TextFormatter  ****************
   class polymorphism
 
