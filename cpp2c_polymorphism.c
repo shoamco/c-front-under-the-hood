@@ -143,7 +143,7 @@ void runAsPrePostFixerRef(const PrePostFixer *pp) {
  */
 /*pp.print(123)---->polymorphism,dynamic binding,not inline;*/
 
-    (*(pp->defaultTextFormatter.textFormatter.tablePointer[3]))(pp, 123);
+    (*(pp->defaultTextFormatter.textFormatter.tablePointer[2]))(pp, 123,'#');
 
     printf("\n--- end runAsPrePostFixerRef() ---\n\n");
 }
@@ -155,7 +155,7 @@ void runAsPrePostDollarFixerRef(const PrePostDollarFixer *pp) {
 
     /*pp.print(123)---->polymorphism,dynamic binding;*/
 
-    (*(pp->prePostFixer.defaultTextFormatter.textFormatter.tablePointer[3]))(pp, 123);
+    (*(pp->prePostFixer.defaultTextFormatter.textFormatter.tablePointer[2]))(pp, 123,'#');
 
     printf("\n--- end runAsPrePostDollarFixerRef() ---\n\n");
 }
@@ -164,7 +164,7 @@ void runAsPrePostDollarFixerObj(const PrePostDollarFixer *pp) {
     printf("\n--- start runAsPrePostDollarFixerObj() ---\n\n");
 
     /*pp.print(123);---->polymorphism,dynamic binding*/
-    (*(pp->prePostFixer.defaultTextFormatter.textFormatter.tablePointer[3]))(&pp, 123);
+    (*(pp->prePostFixer.defaultTextFormatter.textFormatter.tablePointer[2]))(&pp, 123,'#');
 
 
     printf("\n--- end runAsPrePostDollarFixerObj() ---\n\n");
@@ -202,7 +202,7 @@ void doFormatterArray() {
     PrePostDollarFixer temporary_ppdf;
     PrePostChecker temporary_ppc;
 
-    
+
 
     printf("\n--- start doFormatterArray() ---\n\n");
      /*formatters={__PrePostDollarFixer_CTOR_p_cc_cc__(&temporary_ppdf, "!!! ", " !!!"),

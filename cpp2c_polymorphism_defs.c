@@ -36,34 +36,29 @@ vptr g_virtual_table_DefaultTextFormatter[2] = {__v_DefaultTextFormatter_DTOR_p_
 vptr g_virtual_table_PrePostFixer[5] = {__v_PrePostFixer_DTOR_p__,
                                                     __v_print__PrePostFixer_p_cc__,
                                                     __v_print__PrePostFixer_p_l_c__,
-                                                    __v_print__PrePostFixer_p_l__,
                                                     __v_getDefaultSymbol__PrePostFixer_p__};
 
 /* virtual table of PrePostDollarFixer*/
 vptr g_virtual_table_PrePostDollarFixer[5] = {__PrePostDollarFixer_DTOR_p__,
                                                           __v_print__PrePostFixer_p_cc__,
                                                           __v_print__PrePostDollarFixer_p_l_c__,
-                                                          __v_print__PrePostDollarFixer_p_l__,
                                                           __v_getDefaultSymbol__PrePostDollarFixer_p__};
 /* virtual table of PrePostHashFixer*/
 vptr g_virtual_table_PrePostHashFixer[5] = {__PrePostDollarFixer_DTOR_p__,
                                                         __v_print__PrePostFixer_p_cc__,
                                                         __v_print__PrePostHashFixer_p_l_c__,
-                                                        __v_print__PrePostHashFixer_p_l__,
                                                         __v_getDefaultSymbol__PrePostHashFixer_p__};
 
 /*virtual table of PrePostFloatDollarFixer*/
 vptr g_virtual_table_PrePostFloatDollarFixer[5] = {__PrePostFloatDollarFixer_DTOR_p__,
                                                                __v_print__PrePostFixer_p_cc__,
                                                                __v_print__PrePostDollarFixer_p_l_c__,
-                                                               __v_print__PrePostDollarFixer_p_l__,
                                                                __v_getDefaultSymbol__PrePostFloatDollarFixer_p__};
 
 /*virtual table of PrePostFloatDollarFixer*/
 vptr g_virtual_table_PrePostChecker[5] = {__PrePostChecker_DTOR_p__,
                                                                __v_print__PrePostFixer_p_cc__,
                                                                __v_print__PrePostDollarFixer_p_l_c__,
-                                                               __v_print__PrePostDollarFixer_p_l__,
                                                                __v_getDefaultSymbol__PrePostFloatDollarFixer_p__};
 /***************TextFormatter Defs *************/
 
