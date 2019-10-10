@@ -161,25 +161,28 @@ void runAsPrePostFixerRef(const PrePostFixer *pp) {
    printf("\n--- end runAsPrePostDollarFixerRef() ---\n\n");
    }
 
-/*  void runAsPrePostDollarFixerObj(const PrePostDollarFixer pp)
+  void runAsPrePostDollarFixerObj(const PrePostDollarFixer *pp)
 {
    printf("\n--- start runAsPrePostDollarFixerObj() ---\n\n");
 
-   pp.print(123);
+   /*pp.print(123);---->polymorphism,dynamic binding*/
+    (*(pp->prePostFixer.defaultTextFormatter.textFormatter.tablePointer[3]))(&pp,123);
 
-   printf("\n--- end runAsPrePostDollarFixerObj() ---\n\n");
+
+    printf("\n--- end runAsPrePostDollarFixerObj() ---\n\n");
 }
 
-void runAsPrePostHashFixerRef(const PrePostHashFixer& pp)
+void runAsPrePostHashFixerRef(const PrePostHashFixer *pp)
 {
 printf("\n--- start runAsPrePostHashFixerRef() ---\n\n");
 
-pp.print(123);
+    /*pp.print(123);---->polymorphism,dynamic binding*/
+   
 
 printf("\n--- end runAsPrePostHashFixerRef() ---\n\n");
 }
 
-void doMultiplier()
+/*void doMultiplier()
 {
    printf("\n--- start doMultiplier() ---\n\n");
 
@@ -249,6 +252,7 @@ void doFormatterDynamicArray()
 */
     int main() {
         PrePostHashFixer hfix;
+        PrePostHashFixer temporary ;
 
         printf("\n--- Start main() ---\n\n");
 
@@ -261,15 +265,22 @@ void doFormatterDynamicArray()
         __PrePostHashFixer_CTOR_p__(&hfix);
     runAsPrePostFixerRef(&hfix);
      runAsPrePostDollarFixerRef(&hfix);
-       /* runAsPrePostDollarFixerObj(&hfix);
-        runAsPrePostHashFixerRef(&hfix);
 
-        doMultiplier();
 
-        doFormatterArray();
-        doFormatterPtrs();
-        doFormatterDynamicArray();
-    */
+     /*Temporary variable when call function by value*/
+    __PrePostDollarFixer_COPY_CTOR_p_p__(&temporary,&hfix);
+        runAsPrePostDollarFixerObj(&temporary);
+    __PrePostHashFixer_DTOR_p__(&temporary);/*DTOR temporary object*/
+
+
+     runAsPrePostHashFixerRef(&hfix);
+
+    /*  doMultiplier();
+
+      doFormatterArray();
+      doFormatterPtrs();
+      doFormatterDynamicArray();
+  */
         printf("\n--- End main() ---\n\n");
 
         return 0;
