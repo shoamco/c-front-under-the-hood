@@ -202,10 +202,12 @@ void doFormatterArray() {
     PrePostDollarFixer temporary_ppdf;
     PrePostChecker temporary_ppc;
 
+    
+
     printf("\n--- start doFormatterArray() ---\n\n");
      /*formatters={__PrePostDollarFixer_CTOR_p_cc_cc__(&temporary_ppdf, "!!! ", " !!!"),
                                       __PrePostChecker_CTOR_p__(&temporary_ppc)};*/
-     
+
 /*   DefaultTextFormatter formatters[] =
            {
                    PrePostDollarFixer("!!! ", " !!!"),
